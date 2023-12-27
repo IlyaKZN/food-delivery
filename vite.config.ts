@@ -5,6 +5,7 @@ import stylelint from 'vite-plugin-stylelint';
 import StyleLintFormatterPretty from 'stylelint-formatter-pretty';
 
 import eslint from 'vite-plugin-eslint';
+import { resolve } from 'node:path';
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
@@ -29,15 +30,27 @@ export default defineConfig(() => {
 
   const plugins = {
     development: developmentPlugins,
-  }['development'] || [];
-  
+  }.development || [];
+
   return {
     plugins: [
       ...plugins,
-      vue()
+      vue(),
     ],
     server: {
       port: 9000,
-    }
-  }
-})
+      hmr: {
+        overlay: false,
+      },
+    },
+    resolve: {
+      alias: [
+        {
+          find: '@',
+          replacement: resolve(__dirname, 'src'),
+        },
+      ],
+      extensions: ['*', '.vue', '.js', '.ts', '.json', '.scss', 'mjs'],
+    },
+  };
+});

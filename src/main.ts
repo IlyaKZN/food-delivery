@@ -1,5 +1,10 @@
 import { createApp } from 'vue';
-import './style.css';
-import App from './App.vue';
+import AppScreen from './screens/index.vue';
+import router from './routes';
+import 'material-icons/iconfont/material-icons.css';
 
-createApp(App).mount('#app');
+const app = createApp(AppScreen);
+
+app.use(router);
+
+app.mount('#app');

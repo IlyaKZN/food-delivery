@@ -1,0 +1,23 @@
+@use 'reset-css/sass/reset';
+@use './fonts/Roboto';
+@use './variables.scss' as *;
+
+* {
+  box-sizing: border-box;
+
+  font-family: $font-app-preferred;
+}
+
+body {
+  font-family: $font-app-preferred;
+  font-size: 14px;
+  line-height: normal;
+
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  height: 100%; /* ✔️ Height on the parent will fix this issue. */
+}
