@@ -88,7 +88,10 @@
   }
 
   .header-component__search-button {
+    width: 130px;
+
     border-left: 2px solid #557ee5;
+    border-radius: 0;
   }
 
   .header-component__right-container {

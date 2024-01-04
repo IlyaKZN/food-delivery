@@ -39,9 +39,11 @@
   },
   "dependencies": {
     "@material/ripple": "^14.0.0",
+    "@material/theme": "^14.0.0",
     "material-icons": "^1.13.12",
     "pinia": "^2.1.7",
     "reset-css": "^5.0.2",
+    "swiper": "^11.0.5",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5"
   }

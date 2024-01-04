@@ -1,34 +1,49 @@
 <template>
   <div
+  v-click-outside="{
+    handler: avatarWidgetClickOutsideHandler
+  }"
   class="avatar-widget"
   :class="{
     'avatar-widget__opened': isShowMenu
   }">
     <div class="avatar-widget__content">
       <ButtonComponent
-      v-if="!isShowMenu"
-      @click="isShowMenu = !isShowMenu"
-      class="avatar-widget__action-button">
+      @click="() => { if (!isShowMenu) isShowMenu = true }"
+      class="avatar-widget__action-button"
+      :class="{
+        'avatar-widget__action-button--disabled': isShowMenu,
+      }">
         <div/>
       </ButtonComponent>
 
       <div class="avatar-widget__top-row">
-        <div class="avatar-widget__menu-row">
-          Мои данные
-        </div>
+        <ButtonComponent>
+          <div class="avatar-widget__menu-row">
+            <span>Мои данные</span>
+          </div>
+        </ButtonComponent>
 
         <span class="avatar-widget__icon material-icons">
           account_circle
         </span>
       </div>
 
-      <div class="avatar-widget__menu-row">
-        Мои заказы
-      </div>
+      <ButtonComponent>
+        <div class="avatar-widget__menu-row">
+          <span>Мои заказы</span>
 
-      <div class="avatar-widget__menu-row">
-        Выйти
-      </div>
+          <span class="avatar-widget__menu-row-icon avatar-widget__menu-row-icon--history material-icons">history</span>
+        </div>
+      </ButtonComponent>
+
+      <ButtonComponent>
+        <div class="avatar-widget__menu-row">
+          <span>Выйти</span>
+
+          <span class="avatar-widget__menu-row-icon material-icons">logout</span>
+        </div>
+      </ButtonComponent>
     </div>
   </div>
 </template>
@@ -45,8 +60,13 @@
     setup() {
       const isShowMenu = ref(false);
 
+      function avatarWidgetClickOutsideHandler() {
+        isShowMenu.value = false;
+      }
+
       return {
         isShowMenu,
+        avatarWidgetClickOutsideHandler,
       };
     },
   });
@@ -105,8 +125,16 @@
 
     cursor: pointer;
 
-    &:hover {
-      background-color: rgba(#000, 0.08);
+    // &:hover {
+    //   background-color: rgba(#000, 0.08);
+    // }
+  }
+
+  .avatar-widget__action-button--disabled {
+    cursor: auto;
+
+    &::after {
+      display: none;
     }
   }
 
@@ -122,6 +150,10 @@
   }
 
   .avatar-widget__menu-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     width: 100%;
     padding: 5px 5px 5px 12px;
 
@@ -132,5 +164,13 @@
     font-weight: 500;
 
     cursor: pointer;
+  }
+
+  .avatar-widget__menu-row-icon {
+    font-size: 24px;
+  }
+
+  .avatar-widget__menu-row-icon--history {
+    margin-right: 2px;
   }
 </style>

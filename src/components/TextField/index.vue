@@ -59,7 +59,7 @@
 
   .text-field-component__input {
     width: 100%;
-    height: 20px;
+    height: 100%;
     margin-right: 12px;
 
     border: 0;
