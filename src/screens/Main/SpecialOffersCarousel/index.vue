@@ -1,9 +1,5 @@
 <template>
   <div class="main-screen-special-offers-carousel">
-    <h2 class="main-screen-special-offers-carousel__title">
-      Акции
-    </h2>
-
     <div class="main-screen-special-offers-carousel__content">
       <ButtonComponent
       @click="goToPreviousSlide"
@@ -131,13 +127,6 @@
 </script>
 
 <style lang="scss">
-  .main-screen-special-offers-carousel__title {
-    margin-bottom: 20px;
-
-    font-size: 48px;
-    font-weight: 700;
-  }
-
   .main-screen-special-offers-carousel__content {
     display: flex;
     align-items: center;
