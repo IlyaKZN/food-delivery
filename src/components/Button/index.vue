@@ -111,7 +111,7 @@
   }
 
   .button-component--base {
-    background-color: white;
+    background-color: transparent;
   }
 
   .button-component__icon--small {

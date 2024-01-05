@@ -1,0 +1,30 @@
+%scrollbar {
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    margin: 0;
+
+    background: rgb(0 0 0 / 0.15);
+  }
+
+  &::-webkit-scrollbar-button:vertical:decrement {
+    height: 0;
+
+    background: rgb(0 0 0 / 0);
+  }
+
+  &::-webkit-scrollbar-button:vertical:increment {
+    height: 0;
+
+    background: rgb(0 0 0 / 0);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    min-height: 32px;
+
+    background: #999;
+    background-clip: content-box;
+    border-radius: 2px;
+  }
+}

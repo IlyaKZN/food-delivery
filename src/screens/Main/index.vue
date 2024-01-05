@@ -10,12 +10,14 @@
       Рестораны
     </h2>
 
-    <ControlPanel/>
+    <ControlPanel
+    v-model:filter="activeFilter"
+    v-model:sort="sort"/>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, ref } from 'vue';
   import SpecialOffersCarousel from './SpecialOffersCarousel';
   import ControlPanel from './ControlPanel';
 
@@ -24,6 +26,15 @@
     components: {
       SpecialOffersCarousel,
       ControlPanel,
+    },
+    setup() {
+      const activeFilter = ref('all');
+      const sort = ref('');
+
+      return {
+        activeFilter,
+        sort,
+      };
     },
   });
 </script>
