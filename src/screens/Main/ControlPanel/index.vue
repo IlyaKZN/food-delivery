@@ -58,12 +58,16 @@
     nextTick,
     ref,
     computed,
+    watch,
     onMounted,
     onBeforeUnmount,
   } from 'vue';
+  import { storeToRefs } from 'pinia';
   import ButtonComponent from '@/components/Button';
   import { TFilterListItem } from './types';
   import { createPopper, Instance } from '@popperjs/core';
+  import useClientStore from '@/store/client';
+  import { debounce } from 'lodash';
 
   export default defineComponent({
     name: 'MainScreenControlPanel',
@@ -82,6 +86,10 @@
     },
     emits: ['update:filter'],
     setup(props, { emit }) {
+      const clientStore = useClientStore();
+
+      const { windowData } = storeToRefs(clientStore);
+
       const filtersContainer = ref<HTMLDivElement>();
       const showMoreButton = ref<ComponentPublicInstance>();
       const showMorePopup = ref<HTMLDivElement>();
@@ -176,25 +184,56 @@
         return 'Еще';
       });
 
-      async function filterButtonRefHandler(el: ComponentPublicInstance, item: TFilterListItem) {
+      const filterButtonRefs: Array<{
+        data: TFilterListItem,
+        component: ComponentPublicInstance,
+      }> = [];
+
+      function calcOverflowShowMoreButton(el: ComponentPublicInstance) {
         if (!el) return;
 
-        await nextTick();
+        const showMoreButtonClientRect = (el.$el as HTMLDivElement).getBoundingClientRect();
 
-        const itemClientRect = (el.$el as HTMLDivElement).getBoundingClientRect();
+        const space = isSelectedHiddenFilterItem.value ? 10 : 80;
 
-        if (itemClientRect.left + itemClientRect.width > filtersContainerRightSideCoord!) {
-          hiddenFilterList.value.push(item);
+        if (showMoreButtonClientRect.left + showMoreButtonClientRect.width + space > filtersContainerRightSideCoord!) {
+          hiddenFilterList.value.push(viewItems.value.at(-1)!);
         }
       }
 
       function showMoreButtonRefHandler(el: ComponentPublicInstance) {
         showMoreButton.value = el;
+      }
 
-        const showMoreButtonClentRect = (el.$el as HTMLDivElement).getBoundingClientRect();
+      async function calcOverflowItems() {
+        await nextTick();
 
-        if (showMoreButtonClentRect.left + showMoreButtonClentRect.width > filtersContainerRightSideCoord!) {
-          hiddenFilterList.value.push(viewItems.value.at(-1)!);
+        filterButtonRefs.forEach((item) => {
+          const itemClientRect = (item.component.$el as HTMLDivElement).getBoundingClientRect();
+
+          if (itemClientRect.left + itemClientRect.width > filtersContainerRightSideCoord!) {
+            if (!hiddenFilterList.value.some((item1) => item1.value === item.data.value)) {
+              hiddenFilterList.value.push(item.data);
+            }
+          }
+        });
+
+        await nextTick();
+        calcOverflowShowMoreButton(showMoreButton.value!);
+      }
+
+      const debouncedCalcOverflowItems = debounce(calcOverflowItems, 100, { leading: true });
+
+      async function filterButtonRefHandler(el: ComponentPublicInstance, item: TFilterListItem) {
+        if (!el) return;
+
+        filterButtonRefs.push({
+          component: el,
+          data: item,
+        });
+
+        if (filterButtonRefs.length === filterList.length) {
+          debouncedCalcOverflowItems();
         }
       }
 
@@ -238,17 +277,27 @@
         filterValue.value = item.value;
       }
 
-      onMounted(() => {
+      watch(windowData, () => {
         const filtersContainerClientRect = filtersContainer.value!.getBoundingClientRect();
 
         filtersContainerRightSideCoord = filtersContainerClientRect.left + filtersContainerClientRect.width;
 
+        hiddenFilterList.value = [];
+        debouncedCalcOverflowItems();
+      }, { deep: true });
+
+      watch(filtersContainer, () => {
+        const filtersContainerClientRect = filtersContainer.value!.getBoundingClientRect();
+
+        filtersContainerRightSideCoord = filtersContainerClientRect.left + filtersContainerClientRect.width;
+      });
+
+      onMounted(() => {
         window.addEventListener('click', clickHandler);
       });
 
       onBeforeUnmount(() => {
         window.removeEventListener('click', clickHandler);
-
       });
 
       return {
@@ -308,7 +357,10 @@
 
   .main-screen-control-panel__sort-button {
     width: max-content;
-    margin-left: 110px;
+
+    // margin-left: 40px;
+
+    // margin-left: minmax(20px, 90px);
   }
 
   .main-screen-control-panel__more-popup {

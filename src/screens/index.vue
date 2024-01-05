@@ -11,11 +11,17 @@
 
   import { defineComponent } from 'vue';
   import TheHeaderComponent from '../components/TheHeader';
+  import useClientStore from '@/store/client';
 
   export default defineComponent({
     name: 'AppScreen',
     components: {
       TheHeaderComponent,
+    },
+    setup() {
+      const clientStore = useClientStore();
+
+      clientStore.enableWindowSizeWatcher();
     },
   });
 </script>
