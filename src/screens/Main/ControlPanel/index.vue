@@ -277,14 +277,14 @@
         filterValue.value = item.value;
       }
 
-      watch(windowData, () => {
+      watch(() => windowData.value?.width, () => {
         const filtersContainerClientRect = filtersContainer.value!.getBoundingClientRect();
 
         filtersContainerRightSideCoord = filtersContainerClientRect.left + filtersContainerClientRect.width;
 
         hiddenFilterList.value = [];
         debouncedCalcOverflowItems();
-      }, { deep: true });
+      });
 
       watch(filtersContainer, () => {
         const filtersContainerClientRect = filtersContainer.value!.getBoundingClientRect();
@@ -357,10 +357,6 @@
 
   .main-screen-control-panel__sort-button {
     width: max-content;
-
-    // margin-left: 40px;
-
-    // margin-left: minmax(20px, 90px);
   }
 
   .main-screen-control-panel__more-popup {

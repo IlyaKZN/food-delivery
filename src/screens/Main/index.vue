@@ -12,7 +12,10 @@
 
     <ControlPanel
     v-model:filter="activeFilter"
-    v-model:sort="sort"/>
+    v-model:sort="sort"
+    class="main-screen__control-panel"/>
+
+    <RestorauntList/>
   </div>
 </template>
 
@@ -20,12 +23,14 @@
   import { defineComponent, ref } from 'vue';
   import SpecialOffersCarousel from './SpecialOffersCarousel';
   import ControlPanel from './ControlPanel';
+  import RestorauntList from './RestorauntList';
 
   export default defineComponent({
     name: 'MainScreen',
     components: {
       SpecialOffersCarousel,
       ControlPanel,
+      RestorauntList,
     },
     setup() {
       const activeFilter = ref('all');
@@ -55,5 +60,9 @@
 
   .main-screen__special-offers-carousel {
     margin-bottom: 54px;
+  }
+
+  .main-screen__control-panel {
+    margin-bottom: 42px;
   }
 </style>
