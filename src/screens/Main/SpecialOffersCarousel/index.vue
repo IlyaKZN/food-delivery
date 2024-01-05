@@ -4,18 +4,19 @@
       <ButtonComponent
       @click="goToPreviousSlide"
       class="main-screen-special-offers-carousel__swiper-nav-button"
+      :class="{
+        'main-screen-special-offers-carousel__swiper-nav-button--disabled': isLeftLimit,
+      }"
+      :disabled="isLeftLimit"
       icon="chevron_left"/>
 
       <div class="main-screen-special-offers-carousel__swiper">
         <swiper-container
+        @slide-change="console.log"
         class="main-screen-special-offers-carousel__swiper-container"
-        height="528"
-        :slidesPerView="3"
-        spaceBetween="32"
         ref="swiper">
           <swiper-slide
           v-for="(slideData, index) in slideDataList"
-          @click="console.log"
           :key="index">
             <img
             alt="Акция"
@@ -28,13 +29,17 @@
       <ButtonComponent
       @click="goToNextSlide"
       class="main-screen-special-offers-carousel__swiper-nav-button"
+      :class="{
+        'main-screen-special-offers-carousel__swiper-nav-button--disabled': isRightLimit,
+      }"
+      :disabled="isRightLimit"
       icon="chevron_right"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, ref, watch } from 'vue';
   import ButtonComponent from '@/components/Button';
 
   export default defineComponent({
@@ -44,6 +49,36 @@
     },
     setup() {
       const swiper = ref();
+      const isLeftLimit = ref(true);
+      const isRightLimit = ref(false);
+
+      function initSwiper() {
+        const swiperParams = {
+          height: 528,
+          slidesPerView: 3,
+          spaceBetween: 32,
+        };
+
+        swiper.value.addEventListener('swiperslidechange', (event: CustomEvent) => {
+          if (event.detail[0].activeIndex === 0) {
+            isLeftLimit.value = true;
+          } else {
+            isLeftLimit.value = false;
+          }
+
+          if (event.detail[0].isEnd) {
+            isRightLimit.value = true;
+          } else {
+            isRightLimit.value = false;
+          }
+        });
+
+        // now we need to assign all parameters to Swiper element
+        Object.assign(swiper.value, swiperParams);
+
+        // and now initialize it
+        swiper.value.initialize();
+      }
 
       function goToNextSlide() {
         swiper.value.swiper.slideNext();
@@ -116,9 +151,19 @@
         },
       ];
 
+      const unwatchSwiper = watch(swiper, () => {
+        if (swiper.value) {
+          initSwiper();
+
+          unwatchSwiper();
+        }
+      });
+
       return {
         swiper,
         slideDataList,
+        isLeftLimit,
+        isRightLimit,
         goToNextSlide,
         goToPreviousSlide,
       };
@@ -146,6 +191,10 @@
     height: 64px;
 
     border-radius: 50%;
+  }
+
+  .main-screen-special-offers-carousel__swiper-nav-button--disabled {
+    opacity: 0.5;
   }
 
   .main-screen-special-offers-carousel__swiper-container {

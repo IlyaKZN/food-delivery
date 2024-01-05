@@ -15,38 +15,71 @@
       :key="item.value"
       :ref="(el) => filterButtonRefHandler(el as ComponentPublicInstance, item)"/>
 
-      <ButtonComponent
-      v-if="hiddenFilterList.length"
-      @click.stop="showMoreButtonClickHandler"
-      class="main-screen-control-panel__button"
-      :class="{
-        'main-screen-control-panel__button--active': isSelectedHiddenFilterItem,
-      }"
-      icon="expand_more"
-      :text="showMoreButtonText"
-      type="base"
-      :ref="(el) => showMoreButtonRefHandler(el as ComponentPublicInstance)"/>
+      <DropDownComponent>
+        <template #default="{ clickHandler }">
+          <ButtonComponent
+          v-if="hiddenFilterList.length"
+          @click.stop="clickHandler"
+          class="main-screen-control-panel__button"
+          :class="{
+            'main-screen-control-panel__button--active': isSelectedHiddenFilterItem,
+          }"
+          icon="expand_more"
+          :text="showMoreButtonText"
+          type="base"
+          :ref="(el) => showMoreButtonRefHandler(el as ComponentPublicInstance)"/>
+        </template>
+
+        <template #overlay>
+          <div class="main-screen-control-panel__more-popup">
+            <div class="main-screen-control-panel__more-popup-content">
+              <ButtonComponent
+              v-for="item in sortedHiddenFilterList"
+              @click="filterButtonClickHandler(item)"
+              class="main-screen-control-panel__hidden-filter-button"
+              :text="item.text"
+              :key="item.value"/>
+            </div>
+          </div>
+        </template>
+      </DropDownComponent>
     </div>
 
-    <ButtonComponent
-    class="main-screen-control-panel__button main-screen-control-panel__sort-button"
-    icon="sort"
-    iconPosition="left"
-    text="Сортировка"
-    type="base"/>
+    <div class="main-screen-control-panel__options-container">
+      <DropDownComponent>
+        <template #default="{ clickHandler }">
+          <ButtonComponent
+          @click.stop="clickHandler"
+          class="main-screen-control-panel__button main-screen-control-panel__sort-button"
+          icon="expand_more"
+          iconPosition="left"
+          :text="obtainingMethod"
+          type="base"/>
+        </template>
 
-    <div
-    v-show="isShowMorePopup"
-    class="main-screen-control-panel__more-popup"
-    ref="showMorePopup">
-      <div class="main-screen-control-panel__more-popup-content">
-        <ButtonComponent
-        v-for="item in sortedHiddenFilterList"
-        @click="filterButtonClickHandler(item)"
-        class="main-screen-control-panel__hidden-filter-button"
-        :text="item.text"
-        :key="item.value"/>
-      </div>
+        <template #overlay>
+          <div class="main-screen-control-panel__more-popup-2">
+            <div class="main-screen-control-panel__more-popup-content">
+              <ButtonComponent
+              @click="obtainingMethod = 'Доставка'"
+              class="main-screen-control-panel__hidden-filter-button"
+              text="Доставка"/>
+
+              <ButtonComponent
+              @click="obtainingMethod = 'Самовывоз'"
+              class="main-screen-control-panel__hidden-filter-button"
+              text="Самовывоз"/>
+            </div>
+          </div>
+        </template>
+      </DropDownComponent>
+
+      <ButtonComponent
+      class="main-screen-control-panel__button main-screen-control-panel__sort-button"
+      icon="sort"
+      iconPosition="left"
+      text="Сортировка"
+      type="base"/>
     </div>
   </div>
 </template>
@@ -59,20 +92,19 @@
     ref,
     computed,
     watch,
-    onMounted,
-    onBeforeUnmount,
   } from 'vue';
   import { storeToRefs } from 'pinia';
   import ButtonComponent from '@/components/Button';
   import { TFilterListItem } from './types';
-  import { createPopper, Instance } from '@popperjs/core';
   import useClientStore from '@/store/client';
+  import DropDownComponent from '@/components/DropDown';
   import { debounce } from 'lodash';
 
   export default defineComponent({
     name: 'MainScreenControlPanel',
     components: {
       ButtonComponent,
+      DropDownComponent,
     },
     props: {
       filter: {
@@ -94,8 +126,7 @@
       const showMoreButton = ref<ComponentPublicInstance>();
       const showMorePopup = ref<HTMLDivElement>();
       const isShowMorePopup = ref(false);
-
-      let showMorePopupPoper: Instance | null = null;
+      const obtainingMethod = ref('Доставка');
 
       let filtersContainerRightSideCoord: number | null = null;
 
@@ -189,15 +220,19 @@
         component: ComponentPublicInstance,
       }> = [];
 
-      function calcOverflowShowMoreButton(el: ComponentPublicInstance) {
-        if (!el) return;
+      async function calcOverflowShowMoreButton(showMoreButtonEl: HTMLDivElement) {
+        await nextTick();
 
-        const showMoreButtonClientRect = (el.$el as HTMLDivElement).getBoundingClientRect();
+        if (!showMoreButtonEl) return;
+
+        const showMoreButtonClientRect = showMoreButtonEl.getBoundingClientRect();
 
         const space = isSelectedHiddenFilterItem.value ? 10 : 80;
 
         if (showMoreButtonClientRect.left + showMoreButtonClientRect.width + space > filtersContainerRightSideCoord!) {
           hiddenFilterList.value.push(viewItems.value.at(-1)!);
+
+          calcOverflowShowMoreButton(showMoreButtonEl);
         }
       }
 
@@ -219,7 +254,8 @@
         });
 
         await nextTick();
-        calcOverflowShowMoreButton(showMoreButton.value!);
+
+        calcOverflowShowMoreButton(showMoreButton.value!.$el);
       }
 
       const debouncedCalcOverflowItems = debounce(calcOverflowItems, 100, { leading: true });
@@ -237,40 +273,8 @@
         }
       }
 
-      function openShowMorePopup() {
-        if (!showMorePopupPoper && showMoreButton.value && showMorePopup.value) {
-          showMorePopupPoper = createPopper(showMoreButton.value.$el, showMorePopup.value, {
-            placement: 'bottom-end',
-            modifiers: [
-              {
-                name: 'offset',
-                options: {
-                  offset: [0, 10],
-                },
-              },
-            ],
-          });
-        }
-
-        isShowMorePopup.value = true;
-      }
-
       function closeShowMorePopup() {
         isShowMorePopup.value = false;
-      }
-
-      function showMoreButtonClickHandler() {
-        if (isShowMorePopup.value) {
-          closeShowMorePopup();
-        } else {
-          openShowMorePopup();
-        }
-      }
-
-      function clickHandler(event: MouseEvent) {
-        if (isShowMorePopup.value && !showMorePopup.value?.contains(event.target as HTMLElement)) {
-          closeShowMorePopup();
-        }
       }
 
       function filterButtonClickHandler(item: TFilterListItem) {
@@ -292,14 +296,6 @@
         filtersContainerRightSideCoord = filtersContainerClientRect.left + filtersContainerClientRect.width;
       });
 
-      onMounted(() => {
-        window.addEventListener('click', clickHandler);
-      });
-
-      onBeforeUnmount(() => {
-        window.removeEventListener('click', clickHandler);
-      });
-
       return {
         showMorePopup,
         filterList,
@@ -310,9 +306,9 @@
         showMoreButtonText,
         isSelectedHiddenFilterItem,
         sortedHiddenFilterList,
+        obtainingMethod,
         showMoreButtonRefHandler,
         filterButtonRefHandler,
-        showMoreButtonClickHandler,
         closeShowMorePopup,
         filterButtonClickHandler,
       };
@@ -328,8 +324,8 @@
     display: flex;
 
     width: 100%;
-    height: 86px;
-    padding: 18px 51px;
+    height: 64px;
+    padding: 10px 30px;
     overflow: hidden;
 
     background-color: $color-app-primary;
@@ -339,16 +335,21 @@
   .main-screen-control-panel__button {
     width: auto;
     min-width: min-content;
-    padding: 0 20px;
+    padding: 0 10px;
   }
 
   .main-screen-control-panel__filters-container {
     display: flex;
     flex-grow: 1;
-    gap: 20px;
+    gap: 8px;
 
     height: 100%;
     overflow: hidden;
+  }
+
+  .main-screen-control-panel__options-container {
+    display: flex;
+    gap: 8px;
   }
 
   .main-screen-control-panel__button--active {
@@ -357,19 +358,7 @@
 
   .main-screen-control-panel__sort-button {
     width: max-content;
-  }
-
-  .main-screen-control-panel__more-popup {
-    z-index: 10;
-
-    width: 264px;
-    height: 214px;
-    overflow: hidden;
-    overscroll-behavior: contain;
-
-    background-color: white;
-    filter: drop-shadow(0 0 8px rgb(0 0 0 / 0.25));
-    border-radius: 14px;
+    max-width: max-content;
   }
 
   .main-screen-control-panel__hidden-filter-button {
@@ -377,6 +366,24 @@
 
     min-height: 50px;
     padding-left: 20px;
+
+    background-color: white;
+  }
+
+  .main-screen-control-panel__more-popup {
+    width: 264px;
+    height: 214px;
+    overflow: hidden;
+    overscroll-behavior: contain;
+
+    background-color: white;
+  }
+
+  .main-screen-control-panel__more-popup-2 {
+    width: 264px;
+    height: 148px;
+    overflow: hidden;
+    overscroll-behavior: contain;
 
     background-color: white;
   }

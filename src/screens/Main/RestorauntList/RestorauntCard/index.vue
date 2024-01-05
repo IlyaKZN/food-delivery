@@ -53,6 +53,8 @@
     flex-direction: column;
 
     width: 100%;
+
+    cursor: pointer;
   }
 
   .main-screen-restoraunt-card__image {

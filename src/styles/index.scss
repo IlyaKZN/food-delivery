@@ -1,8 +1,11 @@
 @use 'reset-css/sass/reset';
 @use './fonts/Roboto';
 @use './variables.scss' as *;
+@use './placeholders' as *;
 
 * {
+  @extend %scrollbar;
+
   box-sizing: border-box;
 
   font-family: $font-app-preferred;

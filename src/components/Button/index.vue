@@ -6,7 +6,8 @@
     {
       'button-component--reverse': iconPosition === 'left'
     }
-  ]">
+  ]"
+  :disabled="disabled">
     <slot>
       <template v-if="text">
         <span>
@@ -51,6 +52,21 @@
         type: String as PropType<'right' | 'left'>,
         default: 'right',
       },
+      disabled: {
+        type: Boolean,
+        default: false,
+      },
+    },
+    setup(props) {
+      function clickHandler(event: Event) {
+        if (props.disabled) {
+          event.stopPropagation();
+        }
+      }
+
+      return {
+        clickHandler,
+      };
     },
   });
 </script>
@@ -75,9 +91,16 @@
     border: 0;
     border-radius: 14px;
 
-    font-size: 24px;
+    font-size: 20px;
 
     cursor: pointer;
+    user-select: none;
+
+    &:disabled {
+      color: currentcolor;
+
+      cursor: auto;
+    }
 
     &::after {
       position: absolute;
@@ -115,10 +138,18 @@
   }
 
   .button-component__icon--small {
+    display: block !important;
+
+    width: 24px;
+
     font-size: 24px !important;
   }
 
   .button-component__icon--big {
+    display: block !important;
+
+    width: 48px;
+
     font-size: 48px !important;
   }
 </style>

@@ -35,7 +35,13 @@ export default defineConfig(() => {
   return {
     plugins: [
       ...plugins,
-      vue(),
+      vue({
+        template: {
+          compilerOptions: {
+            isCustomElement: (tag) => tag.startsWith('swiper-'),
+          },
+        },
+      }),
     ],
     server: {
       port: 9000,
