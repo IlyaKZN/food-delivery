@@ -131,7 +131,6 @@
   .header-component__search-textfield {
     width: 360px;
 
-    border-right: 0;
     border-radius: 14px 0 0 14px;
   }
 
@@ -139,6 +138,7 @@
     width: 130px;
 
     border: 2px solid #557ee5;
+    border-left: 0;
     border-radius: 0 14px 14px 0;
   }
 

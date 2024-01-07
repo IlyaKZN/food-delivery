@@ -1,4 +1,5 @@
 export type TRestorauntCard = {
+  id: string,
   src: string,
   name: string,
   openTime: string,

@@ -45,7 +45,7 @@
         default: null,
       },
       type: {
-        type: String as PropType<'primary' | 'base'>,
+        type: String as PropType<'primary' | 'secondary' | 'base'>,
         default: 'primary',
       },
       iconPosition: {
@@ -135,6 +135,10 @@
 
   .button-component--base {
     background-color: transparent;
+  }
+
+  .button-component--secondary {
+    background-color: #eaeaea;
   }
 
   .button-component__icon--small {

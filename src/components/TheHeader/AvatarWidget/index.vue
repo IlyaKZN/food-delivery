@@ -18,7 +18,7 @@
       </ButtonComponent>
 
       <div class="avatar-widget__top-row">
-        <ButtonComponent>
+        <ButtonComponent class="avatar-widget__button">
           <div class="avatar-widget__menu-row">
             <span>Мои данные</span>
           </div>
@@ -29,7 +29,7 @@
         </span>
       </div>
 
-      <ButtonComponent>
+      <ButtonComponent class="avatar-widget__button">
         <div class="avatar-widget__menu-row">
           <span>Мои заказы</span>
 
@@ -37,7 +37,7 @@
         </div>
       </ButtonComponent>
 
-      <ButtonComponent>
+      <ButtonComponent class="avatar-widget__button">
         <div class="avatar-widget__menu-row">
           <span>Выйти</span>
 
@@ -172,5 +172,9 @@
 
   .avatar-widget__menu-row-icon--history {
     margin-right: 2px;
+  }
+
+  .avatar-widget__button {
+    height: 100%;
   }
 </style>

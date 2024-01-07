@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import MainScreen from '@/screens/Main/index.vue';
-import LoginScreen from '@/screens/Login/index.vue';
+import MainScreen from './screens/Main';
+import LoginScreen from './screens/Login';
+import RestorauntScreen from './screens/Restourant';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -15,7 +16,17 @@ const router = createRouter({
       path: '/login',
       component: LoginScreen,
     },
+    {
+      name: 'restoraunt',
+      path: '/restoraunt/:id',
+      component: RestorauntScreen,
+    },
   ],
+  scrollBehavior() {
+    return {
+      top: 0,
+    };
+  },
 });
 
 export default router;

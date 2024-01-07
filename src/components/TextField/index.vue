@@ -11,8 +11,18 @@
     @focus="focusInputHandler"
     @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     class="text-field-component__input"
+    maxlength="30"
     spellcheck="false"
+    :type="type === 'password' && !isShowPassword ? 'password' : 'text'"
     :value="modelValue">
+
+    <span
+    v-if="type === 'password'"
+    @click="changeVisibilityPassword"
+    class="material-icons text-field-component__password-icon"
+    :title="isShowPassword ? 'Скрыть пароль' : 'Показать пароль'">
+      {{ isShowPassword ? 'visibility_off' : 'visibility' }}
+    </span>
 
     <div
     class="text-field-component__placeholder"
@@ -26,7 +36,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref, computed } from 'vue';
+  import { defineComponent, ref, computed, PropType } from 'vue';
 
   export default defineComponent({
     name: 'TextFieldComponent',
@@ -43,10 +53,15 @@
         type: String,
         default: null,
       },
+      type: {
+        type: String as PropType<'default' | 'password' | 'phoneNumber'>,
+        default: 'default',
+      },
     },
     emits: ['update:modelValue'],
-    setup(props) {
+    setup(props, { emit }) {
       const focusedOnInput = ref(false);
+      const isShowPassword = ref(false);
 
       const isPlaceholderOnTop = computed(() => {
         return props.modelValue || focusedOnInput.value;
@@ -54,14 +69,24 @@
 
       function focusInputHandler() {
         focusedOnInput.value = true;
+
+        if (!props.modelValue && props.type === 'phoneNumber') {
+          emit('update:modelValue', '+79');
+        }
       }
 
       function blurInputHandler() {
         focusedOnInput.value = false;
       }
 
+      function changeVisibilityPassword() {
+        isShowPassword.value = !isShowPassword.value;
+      }
+
       return {
         isPlaceholderOnTop,
+        isShowPassword,
+        changeVisibilityPassword,
         focusInputHandler,
         blurInputHandler,
       };
@@ -81,8 +106,9 @@
     overflow: visible;
 
     background: #fff;
-    border: 2px solid #557ee5;
     border-radius: 14px;
+    outline: 2px solid #557ee5;
+    outline-offset: -2px;
   }
 
   .text-field-component-icon {
@@ -92,12 +118,22 @@
     color: #557ee5;
   }
 
+  .text-field-component__password-icon {
+    margin-right: 12px;
+
+    font-size: 20px;
+    color: rgb(0 0 0 / 0.7);
+
+    cursor: pointer;
+  }
+
   .text-field-component__input {
     width: 100%;
-    height: 100%;
-    margin: 0 12px;
+    height: 50px;
+    padding: 0 12px;
 
     border: 0;
+    border-radius: 14px;
 
     font-size: 20px;
     line-height: 24px;

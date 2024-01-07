@@ -17,8 +17,16 @@
       </h3>
 
       <TextFieldComponent
+      v-model="loginValue"
       class="login-screen__input"
-      placeholder="Номер телефона"/>
+      placeholder="Номер телефона"
+      type="phoneNumber"/>
+
+      <TextFieldComponent
+      v-model="passwordValue"
+      class="login-screen__input login-screen__input--password"
+      placeholder="Пароль"
+      type="password"/>
 
       <span class="login-screen__forgot-password">
         Забыли пароль?
@@ -31,6 +39,7 @@
         type="base"/>
 
         <ButtonComponent
+        @click="login"
         class="login-screen__footer-button"
         text="Войти"/>
       </div>
@@ -43,6 +52,7 @@
   import { useRouter } from 'vue-router';
   import ButtonComponent from '@/components/Button';
   import TextFieldComponent from '@/components/TextField';
+  import useProfileStore from '@/store/profile';
 
   export default defineComponent({
     name: 'LoginScreen',
@@ -51,7 +61,10 @@
       ButtonComponent,
     },
     setup() {
-      const test = ref('');
+      const profileStore = useProfileStore();
+
+      const loginValue = ref('');
+      const passwordValue = ref('');
 
       const router = useRouter();
 
@@ -63,8 +76,16 @@
         }
       }
 
+      function login() {
+        profileStore.isAuthorized = true;
+
+        router.push({ name: 'main' }).catch(console.error);
+      }
+
       return {
-        test,
+        loginValue,
+        passwordValue,
+        login,
         goBackButtonHandler,
       };
     },
@@ -86,9 +107,8 @@
     align-items: center;
 
     width: 476px;
-    height: 375px;
     padding: 16px;
-    margin: 168px auto 0;
+    margin: 120px auto 0;
 
     background-color: white;
     filter: drop-shadow(0 0 8px rgb(0 0 0 / 0.25));
@@ -136,6 +156,10 @@
 
   .login-screen__input {
     width: 100%;
+    margin-bottom: 28px;
+  }
+
+  .login-screen__input--password {
     margin-bottom: 6px;
   }
 
@@ -160,7 +184,7 @@
     justify-content: space-between;
 
     width: 100%;
-    margin-top: auto;
+    margin-top: 76px;
   }
 
   .login-screen__footer-button {

@@ -23,3 +23,7 @@ html,
 body {
   height: 100%; /* ✔️ Height on the parent will fix this issue. */
 }
+
+.material-icons {
+  user-select: none;
+}
