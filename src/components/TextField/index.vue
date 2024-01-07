@@ -3,20 +3,30 @@
     <span
     v-if="icon"
     class="text-field-component-icon material-icons">
-      search
+      {{ icon }}
     </span>
 
     <input
+    @blur="blurInputHandler"
+    @focus="focusInputHandler"
     @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     class="text-field-component__input"
-    :placeholder="placeholder"
     spellcheck="false"
     :value="modelValue">
+
+    <div
+    class="text-field-component__placeholder"
+    :class="{
+      'text-field-component__placeholder--top': isPlaceholderOnTop,
+      'text-field-component__placeholder--right': icon,
+    }">
+      <span>{{ placeholder }}</span>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, ref, computed } from 'vue';
 
   export default defineComponent({
     name: 'TextFieldComponent',
@@ -35,23 +45,48 @@
       },
     },
     emits: ['update:modelValue'],
+    setup(props) {
+      const focusedOnInput = ref(false);
+
+      const isPlaceholderOnTop = computed(() => {
+        return props.modelValue || focusedOnInput.value;
+      });
+
+      function focusInputHandler() {
+        focusedOnInput.value = true;
+      }
+
+      function blurInputHandler() {
+        focusedOnInput.value = false;
+      }
+
+      return {
+        isPlaceholderOnTop,
+        focusInputHandler,
+        blurInputHandler,
+      };
+    },
   });
 </script>
 
 <style lang="scss">
   .text-field-component {
+    position: relative;
+
     display: flex;
     align-items: center;
 
     width: 500px;
-    height: 100%;
-    overflow: hidden;
+    height: 50px;
+    overflow: visible;
 
     background: #fff;
+    border: 2px solid #557ee5;
+    border-radius: 14px;
   }
 
   .text-field-component-icon {
-    margin: 0 10px 0 12px;
+    margin-left: 12px;
 
     font-size: 36px !important;
     color: #557ee5;
@@ -60,7 +95,7 @@
   .text-field-component__input {
     width: 100%;
     height: 100%;
-    margin-right: 12px;
+    margin: 0 12px;
 
     border: 0;
 
@@ -70,5 +105,36 @@
     &:focus-visible {
       outline: 0;
     }
+  }
+
+  .text-field-component__placeholder {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+
+    background-color: white;
+
+    font-size: 20px;
+    line-height: 24px;
+    color: rgb(0 0 0 / 0.5);
+
+    pointer-events: none;
+
+    transform: translateY(-50%);
+    transition: all 0.05s linear;
+  }
+
+  .text-field-component__placeholder--right {
+    left: 62px;
+  }
+
+  .text-field-component__placeholder--top {
+    top: 0;
+    left: 14px;
+
+    padding: 0 4px;
+
+    font-size: 14px;
+    line-height: 18px;
   }
 </style>

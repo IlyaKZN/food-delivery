@@ -1,12 +1,15 @@
 <template>
   <div class="header-component">
-    <div class="header-component__logo-container">
+    <div
+    @click="logoClickHandler"
+    class="header-component__logo-container">
       <span class="header-component__logo-text">LOGO</span>
     </div>
 
     <div class="header-component__textfield-container">
       <TextFieldComponent
       v-model="searchValue"
+      class="header-component__search-textfield"
       icon="search"
       placeholder="Ресторан или блюдо"/>
 
@@ -16,16 +19,25 @@
     </div>
 
     <div class="header-component__right-container">
-      <AvatarWidget/>
+      <AvatarWidget v-if="isAuthorized"/>
+
+      <ButtonComponent
+      v-else
+      @click="loginButtonClickHandler"
+      class="header-component__login-button"
+      text="Войти"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
   import { defineComponent, ref } from 'vue';
+  import { storeToRefs } from 'pinia';
+  import { useRouter } from 'vue-router';
   import ButtonComponent from '../Button';
   import TextFieldComponent from '../TextField';
   import AvatarWidget from './AvatarWidget';
+  import useProfileStore from '@/store/profile';
 
   export default defineComponent({
     name: 'TheHeaderComponent',
@@ -35,10 +47,27 @@
       TextFieldComponent,
     },
     setup() {
+      const profileStore = useProfileStore();
+
+      const { isAuthorized } = storeToRefs(profileStore);
+
+      const router = useRouter();
+
       const searchValue = ref('');
+
+      function loginButtonClickHandler() {
+        router.push({ name: 'login' }).catch(console.error);
+      }
+
+      function logoClickHandler() {
+        router.push({ name: 'main' }).catch(console.error);
+      }
 
       return {
         searchValue,
+        isAuthorized,
+        loginButtonClickHandler,
+        logoClickHandler,
       };
     },
   });
@@ -46,12 +75,11 @@
 
 <style lang="scss">
   @use '@/styles/variables' as *;
-  @use 'sass:color';
 
   .header-component {
     display: flex;
 
-    height: 80px;
+    min-height: 80px;
     padding: 15px 44px;
 
     box-shadow: 0 2px 2px rgb(0 0 0 / 0.25);
@@ -67,6 +95,8 @@
 
     background-color: $color-app-primary;
     border-radius: 14px;
+
+    cursor: pointer;
   }
 
   .header-component__logo-text {
@@ -80,21 +110,27 @@
 
     width: 500px;
     height: 100%;
-    overflow: hidden;
 
     background: #fff;
-    border: 2px solid #557ee5;
-    border-radius: 14px;
+  }
+
+  .header-component__search-textfield {
+    border-right: 0;
+    border-radius: 14px 0 0 14px;
   }
 
   .header-component__search-button {
     width: 130px;
 
-    border-left: 2px solid #557ee5;
-    border-radius: 0;
+    border: 2px solid #557ee5;
+    border-radius: 0 14px 14px 0;
   }
 
   .header-component__right-container {
     margin-left: auto;
+  }
+
+  .header-component__login-button {
+    padding: 0 10px;
   }
 </style>
