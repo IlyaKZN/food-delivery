@@ -335,6 +335,7 @@
   .main-screen-control-panel__button {
     width: auto;
     min-width: min-content;
+    height: 100%;
     padding: 0 10px;
   }
 

@@ -83,7 +83,7 @@
     gap: 6px;
 
     width: 100%;
-    height: 100%;
+    height: 50px;
     padding: 0;
     overflow: hidden;
 

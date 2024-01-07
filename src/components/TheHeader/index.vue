@@ -6,7 +6,9 @@
       <span class="header-component__logo-text">LOGO</span>
     </div>
 
-    <div class="header-component__textfield-container">
+    <div
+    v-if="isShowControlElements"
+    class="header-component__textfield-container">
       <TextFieldComponent
       v-model="searchValue"
       class="header-component__search-textfield"
@@ -18,7 +20,9 @@
       text="Поиск"/>
     </div>
 
-    <div class="header-component__right-container">
+    <div
+    v-if="isShowControlElements"
+    class="header-component__right-container">
       <AvatarWidget v-if="isAuthorized"/>
 
       <ButtonComponent
@@ -31,7 +35,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, ref, computed } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useRouter } from 'vue-router';
   import ButtonComponent from '../Button';
@@ -55,6 +59,12 @@
 
       const searchValue = ref('');
 
+      const isShowControlElements = computed(() => {
+        if (!router.currentRoute.value.name) return false;
+
+        return (!['login'].includes(router.currentRoute.value.name.toString()));
+      });
+
       function loginButtonClickHandler() {
         router.push({ name: 'login' }).catch(console.error);
       }
@@ -66,6 +76,7 @@
       return {
         searchValue,
         isAuthorized,
+        isShowControlElements,
         loginButtonClickHandler,
         logoClickHandler,
       };
@@ -77,6 +88,9 @@
   @use '@/styles/variables' as *;
 
   .header-component {
+    position: relative;
+    z-index: 10;
+
     display: flex;
 
     min-height: 80px;
@@ -115,6 +129,8 @@
   }
 
   .header-component__search-textfield {
+    width: 360px;
+
     border-right: 0;
     border-radius: 14px 0 0 14px;
   }

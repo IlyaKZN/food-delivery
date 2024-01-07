@@ -76,8 +76,8 @@
     display: flex;
     align-items: center;
 
-    width: 500px;
-    height: 50px;
+    width: 300px;
+    min-height: 50px;
     overflow: visible;
 
     background: #fff;
