@@ -41,6 +41,7 @@
 <script lang="ts">
   import { defineComponent, ref, watch } from 'vue';
   import ButtonComponent from '@/components/Button';
+  import specialOfferIcon from '@/assets/special-offer.png';
 
   export default defineComponent({
     name: 'MainScreenSpecialOffersCarousel',
@@ -90,61 +91,61 @@
 
       const slideDataList = [
         {
-          img: 'https://s3-alpha-sig.figma.com/img/c665/90d7/4470d72d426a8217d91c2cd0c7ae7194?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pWXuuZcDo-q3RjWIHvqfZ35QCROta1AOaO-ScDTGEykbhR9i3dD2ZjpJY8xG6HiZSYjDjKR5ZgE8bEeEHA4Nv2jZ9eaV~Q52e-UGuizDURiYgnfiF61bEcEBGfEJ1Te6MAnOrIyWFWs6WnyUdtdX8kC7zcB4UTPjXjQZ8DQDRkiw3ICckl2rKA41o0vtgd2h-mXxvNtLP3fVAgfY6mjMJD5TvtzeoMJFyf9dlpZwxokDrVjTvU6B5Of1QDsnSr0uE4fmd2GJCQfq~RxRhDxg38OHRPJZALNf~75v0sFCfPo-rr8RMNK29g5y4NB8SS4H5FgC7Ux9a5QQ~BxakwDiHQ__',
+          img: specialOfferIcon,
           callback() {
 
           },
         },
         {
-          img: 'https://s3-alpha-sig.figma.com/img/c665/90d7/4470d72d426a8217d91c2cd0c7ae7194?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pWXuuZcDo-q3RjWIHvqfZ35QCROta1AOaO-ScDTGEykbhR9i3dD2ZjpJY8xG6HiZSYjDjKR5ZgE8bEeEHA4Nv2jZ9eaV~Q52e-UGuizDURiYgnfiF61bEcEBGfEJ1Te6MAnOrIyWFWs6WnyUdtdX8kC7zcB4UTPjXjQZ8DQDRkiw3ICckl2rKA41o0vtgd2h-mXxvNtLP3fVAgfY6mjMJD5TvtzeoMJFyf9dlpZwxokDrVjTvU6B5Of1QDsnSr0uE4fmd2GJCQfq~RxRhDxg38OHRPJZALNf~75v0sFCfPo-rr8RMNK29g5y4NB8SS4H5FgC7Ux9a5QQ~BxakwDiHQ__',
+          img: specialOfferIcon,
           callback() {
 
           },
         },
         {
-          img: 'https://s3-alpha-sig.figma.com/img/c665/90d7/4470d72d426a8217d91c2cd0c7ae7194?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pWXuuZcDo-q3RjWIHvqfZ35QCROta1AOaO-ScDTGEykbhR9i3dD2ZjpJY8xG6HiZSYjDjKR5ZgE8bEeEHA4Nv2jZ9eaV~Q52e-UGuizDURiYgnfiF61bEcEBGfEJ1Te6MAnOrIyWFWs6WnyUdtdX8kC7zcB4UTPjXjQZ8DQDRkiw3ICckl2rKA41o0vtgd2h-mXxvNtLP3fVAgfY6mjMJD5TvtzeoMJFyf9dlpZwxokDrVjTvU6B5Of1QDsnSr0uE4fmd2GJCQfq~RxRhDxg38OHRPJZALNf~75v0sFCfPo-rr8RMNK29g5y4NB8SS4H5FgC7Ux9a5QQ~BxakwDiHQ__',
+          img: specialOfferIcon,
           callback() {
 
           },
         },
         {
-          img: 'https://s3-alpha-sig.figma.com/img/c665/90d7/4470d72d426a8217d91c2cd0c7ae7194?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pWXuuZcDo-q3RjWIHvqfZ35QCROta1AOaO-ScDTGEykbhR9i3dD2ZjpJY8xG6HiZSYjDjKR5ZgE8bEeEHA4Nv2jZ9eaV~Q52e-UGuizDURiYgnfiF61bEcEBGfEJ1Te6MAnOrIyWFWs6WnyUdtdX8kC7zcB4UTPjXjQZ8DQDRkiw3ICckl2rKA41o0vtgd2h-mXxvNtLP3fVAgfY6mjMJD5TvtzeoMJFyf9dlpZwxokDrVjTvU6B5Of1QDsnSr0uE4fmd2GJCQfq~RxRhDxg38OHRPJZALNf~75v0sFCfPo-rr8RMNK29g5y4NB8SS4H5FgC7Ux9a5QQ~BxakwDiHQ__',
+          img: specialOfferIcon,
           callback() {
 
           },
         },
         {
-          img: 'https://s3-alpha-sig.figma.com/img/c665/90d7/4470d72d426a8217d91c2cd0c7ae7194?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pWXuuZcDo-q3RjWIHvqfZ35QCROta1AOaO-ScDTGEykbhR9i3dD2ZjpJY8xG6HiZSYjDjKR5ZgE8bEeEHA4Nv2jZ9eaV~Q52e-UGuizDURiYgnfiF61bEcEBGfEJ1Te6MAnOrIyWFWs6WnyUdtdX8kC7zcB4UTPjXjQZ8DQDRkiw3ICckl2rKA41o0vtgd2h-mXxvNtLP3fVAgfY6mjMJD5TvtzeoMJFyf9dlpZwxokDrVjTvU6B5Of1QDsnSr0uE4fmd2GJCQfq~RxRhDxg38OHRPJZALNf~75v0sFCfPo-rr8RMNK29g5y4NB8SS4H5FgC7Ux9a5QQ~BxakwDiHQ__',
+          img: specialOfferIcon,
           callback() {
 
           },
         },
         {
-          img: 'https://s3-alpha-sig.figma.com/img/c665/90d7/4470d72d426a8217d91c2cd0c7ae7194?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pWXuuZcDo-q3RjWIHvqfZ35QCROta1AOaO-ScDTGEykbhR9i3dD2ZjpJY8xG6HiZSYjDjKR5ZgE8bEeEHA4Nv2jZ9eaV~Q52e-UGuizDURiYgnfiF61bEcEBGfEJ1Te6MAnOrIyWFWs6WnyUdtdX8kC7zcB4UTPjXjQZ8DQDRkiw3ICckl2rKA41o0vtgd2h-mXxvNtLP3fVAgfY6mjMJD5TvtzeoMJFyf9dlpZwxokDrVjTvU6B5Of1QDsnSr0uE4fmd2GJCQfq~RxRhDxg38OHRPJZALNf~75v0sFCfPo-rr8RMNK29g5y4NB8SS4H5FgC7Ux9a5QQ~BxakwDiHQ__',
+          img: specialOfferIcon,
           callback() {
 
           },
         },
         {
-          img: 'https://s3-alpha-sig.figma.com/img/c665/90d7/4470d72d426a8217d91c2cd0c7ae7194?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pWXuuZcDo-q3RjWIHvqfZ35QCROta1AOaO-ScDTGEykbhR9i3dD2ZjpJY8xG6HiZSYjDjKR5ZgE8bEeEHA4Nv2jZ9eaV~Q52e-UGuizDURiYgnfiF61bEcEBGfEJ1Te6MAnOrIyWFWs6WnyUdtdX8kC7zcB4UTPjXjQZ8DQDRkiw3ICckl2rKA41o0vtgd2h-mXxvNtLP3fVAgfY6mjMJD5TvtzeoMJFyf9dlpZwxokDrVjTvU6B5Of1QDsnSr0uE4fmd2GJCQfq~RxRhDxg38OHRPJZALNf~75v0sFCfPo-rr8RMNK29g5y4NB8SS4H5FgC7Ux9a5QQ~BxakwDiHQ__',
+          img: specialOfferIcon,
           callback() {
 
           },
         },
         {
-          img: 'https://s3-alpha-sig.figma.com/img/c665/90d7/4470d72d426a8217d91c2cd0c7ae7194?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pWXuuZcDo-q3RjWIHvqfZ35QCROta1AOaO-ScDTGEykbhR9i3dD2ZjpJY8xG6HiZSYjDjKR5ZgE8bEeEHA4Nv2jZ9eaV~Q52e-UGuizDURiYgnfiF61bEcEBGfEJ1Te6MAnOrIyWFWs6WnyUdtdX8kC7zcB4UTPjXjQZ8DQDRkiw3ICckl2rKA41o0vtgd2h-mXxvNtLP3fVAgfY6mjMJD5TvtzeoMJFyf9dlpZwxokDrVjTvU6B5Of1QDsnSr0uE4fmd2GJCQfq~RxRhDxg38OHRPJZALNf~75v0sFCfPo-rr8RMNK29g5y4NB8SS4H5FgC7Ux9a5QQ~BxakwDiHQ__',
+          img: specialOfferIcon,
           callback() {
 
           },
         },
         {
-          img: 'https://s3-alpha-sig.figma.com/img/c665/90d7/4470d72d426a8217d91c2cd0c7ae7194?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pWXuuZcDo-q3RjWIHvqfZ35QCROta1AOaO-ScDTGEykbhR9i3dD2ZjpJY8xG6HiZSYjDjKR5ZgE8bEeEHA4Nv2jZ9eaV~Q52e-UGuizDURiYgnfiF61bEcEBGfEJ1Te6MAnOrIyWFWs6WnyUdtdX8kC7zcB4UTPjXjQZ8DQDRkiw3ICckl2rKA41o0vtgd2h-mXxvNtLP3fVAgfY6mjMJD5TvtzeoMJFyf9dlpZwxokDrVjTvU6B5Of1QDsnSr0uE4fmd2GJCQfq~RxRhDxg38OHRPJZALNf~75v0sFCfPo-rr8RMNK29g5y4NB8SS4H5FgC7Ux9a5QQ~BxakwDiHQ__',
+          img: specialOfferIcon,
           callback() {
 
           },
         },
         {
-          img: 'https://s3-alpha-sig.figma.com/img/c665/90d7/4470d72d426a8217d91c2cd0c7ae7194?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pWXuuZcDo-q3RjWIHvqfZ35QCROta1AOaO-ScDTGEykbhR9i3dD2ZjpJY8xG6HiZSYjDjKR5ZgE8bEeEHA4Nv2jZ9eaV~Q52e-UGuizDURiYgnfiF61bEcEBGfEJ1Te6MAnOrIyWFWs6WnyUdtdX8kC7zcB4UTPjXjQZ8DQDRkiw3ICckl2rKA41o0vtgd2h-mXxvNtLP3fVAgfY6mjMJD5TvtzeoMJFyf9dlpZwxokDrVjTvU6B5Of1QDsnSr0uE4fmd2GJCQfq~RxRhDxg38OHRPJZALNf~75v0sFCfPo-rr8RMNK29g5y4NB8SS4H5FgC7Ux9a5QQ~BxakwDiHQ__',
+          img: specialOfferIcon,
           callback() {
 
           },

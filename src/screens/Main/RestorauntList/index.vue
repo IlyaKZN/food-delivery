@@ -12,6 +12,7 @@
   import { defineComponent } from 'vue';
   import { useRouter } from 'vue-router';
   import RestorauntCard, { TRestorauntCard } from './RestorauntCard';
+  import burgerIcon from '@/assets/burger.png';
 
   export default defineComponent({
     name: 'MainScreenRestorauntList',
@@ -28,7 +29,7 @@
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
-          src: 'https://s3-alpha-sig.figma.com/img/e9eb/18c5/5094a8a293d9c224fa8b340902d4adba?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qaUVFk7uHnz0OYb-2wyKREgjTXMfBAk~dTJLcIO4x4wEsHe~Jl6HGffLIVkeh~bvtxHO6LzL5pJ7uP8DMErnJcj~3OlQT7KtCCYXeeRca4t5gJJ5v8fqRCycAYtMTFQjPfvpBTnXAoYH754V5g~oAfCmFdp5rjlO-uXCJYKvnKSJ5XwIcBNOJR-JFLw30OZTP4c49r1SrnVyMvY7Fg4Sr2d32ld7aB40yDV7yfIYK0w7yRSLmz3ukctgGFNv0lmU~2pJ8BGbb16QlZb0KicqLiNy2uphTFAYfbu9JD2qxvw12FFkFDdMNeifIvG27GxoaCgpyxYB~x2WtmhTjr9I6Q__',
+          src: burgerIcon,
           promo: 'Тест',
         },
         {
@@ -37,7 +38,7 @@
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
-          src: 'https://s3-alpha-sig.figma.com/img/e9eb/18c5/5094a8a293d9c224fa8b340902d4adba?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qaUVFk7uHnz0OYb-2wyKREgjTXMfBAk~dTJLcIO4x4wEsHe~Jl6HGffLIVkeh~bvtxHO6LzL5pJ7uP8DMErnJcj~3OlQT7KtCCYXeeRca4t5gJJ5v8fqRCycAYtMTFQjPfvpBTnXAoYH754V5g~oAfCmFdp5rjlO-uXCJYKvnKSJ5XwIcBNOJR-JFLw30OZTP4c49r1SrnVyMvY7Fg4Sr2d32ld7aB40yDV7yfIYK0w7yRSLmz3ukctgGFNv0lmU~2pJ8BGbb16QlZb0KicqLiNy2uphTFAYfbu9JD2qxvw12FFkFDdMNeifIvG27GxoaCgpyxYB~x2WtmhTjr9I6Q__',
+          src: burgerIcon,
           promo: 'Тест',
         },
         {
@@ -46,7 +47,7 @@
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
-          src: 'https://s3-alpha-sig.figma.com/img/e9eb/18c5/5094a8a293d9c224fa8b340902d4adba?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qaUVFk7uHnz0OYb-2wyKREgjTXMfBAk~dTJLcIO4x4wEsHe~Jl6HGffLIVkeh~bvtxHO6LzL5pJ7uP8DMErnJcj~3OlQT7KtCCYXeeRca4t5gJJ5v8fqRCycAYtMTFQjPfvpBTnXAoYH754V5g~oAfCmFdp5rjlO-uXCJYKvnKSJ5XwIcBNOJR-JFLw30OZTP4c49r1SrnVyMvY7Fg4Sr2d32ld7aB40yDV7yfIYK0w7yRSLmz3ukctgGFNv0lmU~2pJ8BGbb16QlZb0KicqLiNy2uphTFAYfbu9JD2qxvw12FFkFDdMNeifIvG27GxoaCgpyxYB~x2WtmhTjr9I6Q__',
+          src: burgerIcon,
           promo: 'Тест',
         },
         {
@@ -55,7 +56,7 @@
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
-          src: 'https://s3-alpha-sig.figma.com/img/e9eb/18c5/5094a8a293d9c224fa8b340902d4adba?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qaUVFk7uHnz0OYb-2wyKREgjTXMfBAk~dTJLcIO4x4wEsHe~Jl6HGffLIVkeh~bvtxHO6LzL5pJ7uP8DMErnJcj~3OlQT7KtCCYXeeRca4t5gJJ5v8fqRCycAYtMTFQjPfvpBTnXAoYH754V5g~oAfCmFdp5rjlO-uXCJYKvnKSJ5XwIcBNOJR-JFLw30OZTP4c49r1SrnVyMvY7Fg4Sr2d32ld7aB40yDV7yfIYK0w7yRSLmz3ukctgGFNv0lmU~2pJ8BGbb16QlZb0KicqLiNy2uphTFAYfbu9JD2qxvw12FFkFDdMNeifIvG27GxoaCgpyxYB~x2WtmhTjr9I6Q__',
+          src: burgerIcon,
           promo: 'Тест',
         },
         {
@@ -64,7 +65,7 @@
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
-          src: 'https://s3-alpha-sig.figma.com/img/e9eb/18c5/5094a8a293d9c224fa8b340902d4adba?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qaUVFk7uHnz0OYb-2wyKREgjTXMfBAk~dTJLcIO4x4wEsHe~Jl6HGffLIVkeh~bvtxHO6LzL5pJ7uP8DMErnJcj~3OlQT7KtCCYXeeRca4t5gJJ5v8fqRCycAYtMTFQjPfvpBTnXAoYH754V5g~oAfCmFdp5rjlO-uXCJYKvnKSJ5XwIcBNOJR-JFLw30OZTP4c49r1SrnVyMvY7Fg4Sr2d32ld7aB40yDV7yfIYK0w7yRSLmz3ukctgGFNv0lmU~2pJ8BGbb16QlZb0KicqLiNy2uphTFAYfbu9JD2qxvw12FFkFDdMNeifIvG27GxoaCgpyxYB~x2WtmhTjr9I6Q__',
+          src: burgerIcon,
           promo: 'Тест',
         },
         {
@@ -73,7 +74,7 @@
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
-          src: 'https://s3-alpha-sig.figma.com/img/e9eb/18c5/5094a8a293d9c224fa8b340902d4adba?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qaUVFk7uHnz0OYb-2wyKREgjTXMfBAk~dTJLcIO4x4wEsHe~Jl6HGffLIVkeh~bvtxHO6LzL5pJ7uP8DMErnJcj~3OlQT7KtCCYXeeRca4t5gJJ5v8fqRCycAYtMTFQjPfvpBTnXAoYH754V5g~oAfCmFdp5rjlO-uXCJYKvnKSJ5XwIcBNOJR-JFLw30OZTP4c49r1SrnVyMvY7Fg4Sr2d32ld7aB40yDV7yfIYK0w7yRSLmz3ukctgGFNv0lmU~2pJ8BGbb16QlZb0KicqLiNy2uphTFAYfbu9JD2qxvw12FFkFDdMNeifIvG27GxoaCgpyxYB~x2WtmhTjr9I6Q__',
+          src: burgerIcon,
           promo: 'Тест',
         },
         {
@@ -82,7 +83,7 @@
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
-          src: 'https://s3-alpha-sig.figma.com/img/e9eb/18c5/5094a8a293d9c224fa8b340902d4adba?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qaUVFk7uHnz0OYb-2wyKREgjTXMfBAk~dTJLcIO4x4wEsHe~Jl6HGffLIVkeh~bvtxHO6LzL5pJ7uP8DMErnJcj~3OlQT7KtCCYXeeRca4t5gJJ5v8fqRCycAYtMTFQjPfvpBTnXAoYH754V5g~oAfCmFdp5rjlO-uXCJYKvnKSJ5XwIcBNOJR-JFLw30OZTP4c49r1SrnVyMvY7Fg4Sr2d32ld7aB40yDV7yfIYK0w7yRSLmz3ukctgGFNv0lmU~2pJ8BGbb16QlZb0KicqLiNy2uphTFAYfbu9JD2qxvw12FFkFDdMNeifIvG27GxoaCgpyxYB~x2WtmhTjr9I6Q__',
+          src: burgerIcon,
           promo: 'Тест',
         }, {
           id: '3',
@@ -90,7 +91,7 @@
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
-          src: 'https://s3-alpha-sig.figma.com/img/e9eb/18c5/5094a8a293d9c224fa8b340902d4adba?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qaUVFk7uHnz0OYb-2wyKREgjTXMfBAk~dTJLcIO4x4wEsHe~Jl6HGffLIVkeh~bvtxHO6LzL5pJ7uP8DMErnJcj~3OlQT7KtCCYXeeRca4t5gJJ5v8fqRCycAYtMTFQjPfvpBTnXAoYH754V5g~oAfCmFdp5rjlO-uXCJYKvnKSJ5XwIcBNOJR-JFLw30OZTP4c49r1SrnVyMvY7Fg4Sr2d32ld7aB40yDV7yfIYK0w7yRSLmz3ukctgGFNv0lmU~2pJ8BGbb16QlZb0KicqLiNy2uphTFAYfbu9JD2qxvw12FFkFDdMNeifIvG27GxoaCgpyxYB~x2WtmhTjr9I6Q__',
+          src: burgerIcon,
           promo: 'Тест',
         },
         {
@@ -99,7 +100,7 @@
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
-          src: 'https://s3-alpha-sig.figma.com/img/e9eb/18c5/5094a8a293d9c224fa8b340902d4adba?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qaUVFk7uHnz0OYb-2wyKREgjTXMfBAk~dTJLcIO4x4wEsHe~Jl6HGffLIVkeh~bvtxHO6LzL5pJ7uP8DMErnJcj~3OlQT7KtCCYXeeRca4t5gJJ5v8fqRCycAYtMTFQjPfvpBTnXAoYH754V5g~oAfCmFdp5rjlO-uXCJYKvnKSJ5XwIcBNOJR-JFLw30OZTP4c49r1SrnVyMvY7Fg4Sr2d32ld7aB40yDV7yfIYK0w7yRSLmz3ukctgGFNv0lmU~2pJ8BGbb16QlZb0KicqLiNy2uphTFAYfbu9JD2qxvw12FFkFDdMNeifIvG27GxoaCgpyxYB~x2WtmhTjr9I6Q__',
+          src: burgerIcon,
           promo: 'Тест',
         },
         {
@@ -108,7 +109,7 @@
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
-          src: 'https://s3-alpha-sig.figma.com/img/e9eb/18c5/5094a8a293d9c224fa8b340902d4adba?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qaUVFk7uHnz0OYb-2wyKREgjTXMfBAk~dTJLcIO4x4wEsHe~Jl6HGffLIVkeh~bvtxHO6LzL5pJ7uP8DMErnJcj~3OlQT7KtCCYXeeRca4t5gJJ5v8fqRCycAYtMTFQjPfvpBTnXAoYH754V5g~oAfCmFdp5rjlO-uXCJYKvnKSJ5XwIcBNOJR-JFLw30OZTP4c49r1SrnVyMvY7Fg4Sr2d32ld7aB40yDV7yfIYK0w7yRSLmz3ukctgGFNv0lmU~2pJ8BGbb16QlZb0KicqLiNy2uphTFAYfbu9JD2qxvw12FFkFDdMNeifIvG27GxoaCgpyxYB~x2WtmhTjr9I6Q__',
+          src: burgerIcon,
           promo: 'Тест',
         },
         {
@@ -117,7 +118,7 @@
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
-          src: 'https://s3-alpha-sig.figma.com/img/e9eb/18c5/5094a8a293d9c224fa8b340902d4adba?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qaUVFk7uHnz0OYb-2wyKREgjTXMfBAk~dTJLcIO4x4wEsHe~Jl6HGffLIVkeh~bvtxHO6LzL5pJ7uP8DMErnJcj~3OlQT7KtCCYXeeRca4t5gJJ5v8fqRCycAYtMTFQjPfvpBTnXAoYH754V5g~oAfCmFdp5rjlO-uXCJYKvnKSJ5XwIcBNOJR-JFLw30OZTP4c49r1SrnVyMvY7Fg4Sr2d32ld7aB40yDV7yfIYK0w7yRSLmz3ukctgGFNv0lmU~2pJ8BGbb16QlZb0KicqLiNy2uphTFAYfbu9JD2qxvw12FFkFDdMNeifIvG27GxoaCgpyxYB~x2WtmhTjr9I6Q__',
+          src: burgerIcon,
           promo: 'Тест',
         },
         {
@@ -126,7 +127,7 @@
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
-          src: 'https://s3-alpha-sig.figma.com/img/e9eb/18c5/5094a8a293d9c224fa8b340902d4adba?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qaUVFk7uHnz0OYb-2wyKREgjTXMfBAk~dTJLcIO4x4wEsHe~Jl6HGffLIVkeh~bvtxHO6LzL5pJ7uP8DMErnJcj~3OlQT7KtCCYXeeRca4t5gJJ5v8fqRCycAYtMTFQjPfvpBTnXAoYH754V5g~oAfCmFdp5rjlO-uXCJYKvnKSJ5XwIcBNOJR-JFLw30OZTP4c49r1SrnVyMvY7Fg4Sr2d32ld7aB40yDV7yfIYK0w7yRSLmz3ukctgGFNv0lmU~2pJ8BGbb16QlZb0KicqLiNy2uphTFAYfbu9JD2qxvw12FFkFDdMNeifIvG27GxoaCgpyxYB~x2WtmhTjr9I6Q__',
+          src: burgerIcon,
           promo: 'Тест',
         },
         {
@@ -135,7 +136,7 @@
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
-          src: 'https://s3-alpha-sig.figma.com/img/e9eb/18c5/5094a8a293d9c224fa8b340902d4adba?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qaUVFk7uHnz0OYb-2wyKREgjTXMfBAk~dTJLcIO4x4wEsHe~Jl6HGffLIVkeh~bvtxHO6LzL5pJ7uP8DMErnJcj~3OlQT7KtCCYXeeRca4t5gJJ5v8fqRCycAYtMTFQjPfvpBTnXAoYH754V5g~oAfCmFdp5rjlO-uXCJYKvnKSJ5XwIcBNOJR-JFLw30OZTP4c49r1SrnVyMvY7Fg4Sr2d32ld7aB40yDV7yfIYK0w7yRSLmz3ukctgGFNv0lmU~2pJ8BGbb16QlZb0KicqLiNy2uphTFAYfbu9JD2qxvw12FFkFDdMNeifIvG27GxoaCgpyxYB~x2WtmhTjr9I6Q__',
+          src: burgerIcon,
           promo: 'Тест',
         },
         {
@@ -144,7 +145,7 @@
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
-          src: 'https://s3-alpha-sig.figma.com/img/e9eb/18c5/5094a8a293d9c224fa8b340902d4adba?Expires=1705276800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qaUVFk7uHnz0OYb-2wyKREgjTXMfBAk~dTJLcIO4x4wEsHe~Jl6HGffLIVkeh~bvtxHO6LzL5pJ7uP8DMErnJcj~3OlQT7KtCCYXeeRca4t5gJJ5v8fqRCycAYtMTFQjPfvpBTnXAoYH754V5g~oAfCmFdp5rjlO-uXCJYKvnKSJ5XwIcBNOJR-JFLw30OZTP4c49r1SrnVyMvY7Fg4Sr2d32ld7aB40yDV7yfIYK0w7yRSLmz3ukctgGFNv0lmU~2pJ8BGbb16QlZb0KicqLiNy2uphTFAYfbu9JD2qxvw12FFkFDdMNeifIvG27GxoaCgpyxYB~x2WtmhTjr9I6Q__',
+          src: burgerIcon,
           promo: 'Тест',
         },
       ];

@@ -255,7 +255,9 @@
 
         await nextTick();
 
-        calcOverflowShowMoreButton(showMoreButton.value!.$el);
+        if (showMoreButton.value) {
+          calcOverflowShowMoreButton(showMoreButton.value.$el);
+        }
       }
 
       const debouncedCalcOverflowItems = debounce(calcOverflowItems, 100, { leading: true });
