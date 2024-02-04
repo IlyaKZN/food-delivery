@@ -46,6 +46,8 @@
         :key="sectionData.title">
           <h2
           class="restoraunt-screen__menu-section-title"
+          :data-value="sectionData.title"
+          ref="sectionTitles"
           :id="sectionData.title">
             {{ sectionData.title }}
           </h2>
@@ -65,7 +67,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent, ref, onMounted } from 'vue';
   import { useRouter } from 'vue-router';
   import ButtonComponent from '@/components/Button';
   import MenuItemCard, { TMenuItemCard } from './MenuItemCard';
@@ -81,7 +83,9 @@
     },
     setup() {
       const router = useRouter();
+
       const activeCategoryMenu = ref('Картофель');
+      const sectionTitles = ref<Array<HTMLElement>>();
 
       const menuSectionDataList: Array<{ title: string, cardList: Array<TMenuItemCard> }> = [
         {
@@ -250,12 +254,30 @@
         });
       }
 
+      function sectionIntersectionObserverHandler(entries: IntersectionObserverEntry[]) {
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio) {
+            activeCategoryMenu.value = (entry.target as HTMLElement).dataset.value!;
+          }
+        });
+      }
+
+      onMounted(() => {
+        const observer = new IntersectionObserver(sectionIntersectionObserverHandler);
+
+        sectionTitles.value?.forEach((sectionTitle) => {
+          observer.observe(sectionTitle);
+        });
+      });
+
       return {
-        backButtonClickHandler,
-        menuCategoryButtonClickHandler,
+        sectionTitles,
         activeCategoryMenu,
         restImg,
         menuSectionDataList,
+
+        backButtonClickHandler,
+        menuCategoryButtonClickHandler,
       };
     },
   });
