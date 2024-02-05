@@ -55,13 +55,14 @@
           <div class="restoraunt-screen__menu-section-grid">
             <MenuItemCard
             v-for="itemData in sectionData.cardList"
+            @add-button-click="menuItemAddButtonClickHandler"
             :itemData="itemData"
             :key="itemData.id"/>
           </div>
         </template>
       </div>
 
-      <div class="restoraunt-screen__right-column"/>
+      <CartComponent class="restoraunt-screen__cart"/>
     </div>
   </div>
 </template>
@@ -70,173 +71,53 @@
   import { defineComponent, ref, onMounted } from 'vue';
   import { useRouter } from 'vue-router';
   import ButtonComponent from '@/components/Button';
-  import MenuItemCard, { TMenuItemCard } from './MenuItemCard';
+  import MenuItemCard from './MenuItemCard';
+  import CartComponent from '@/components/Cart';
+  import useCartStore from '@/store/cart';
   import restImg from '@/assets/rest.png';
   import potatoImg from '@/assets/potato.png';
   import pizzaImg from '@/assets/pizza.png';
+  import { TMenuItem } from '@/types/api';
 
   export default defineComponent({
     name: 'RestorauntScreen',
     components: {
       ButtonComponent,
       MenuItemCard,
+      CartComponent,
     },
     setup() {
       const router = useRouter();
 
+      const cartStore = useCartStore();
+
       const activeCategoryMenu = ref('Картофель');
       const sectionTitles = ref<Array<HTMLElement>>();
 
-      const menuSectionDataList: Array<{ title: string, cardList: Array<TMenuItemCard> }> = [
+      const menuSectionDataList: Array<{ title: string, cardList: Array<TMenuItem> }> = [
         {
           title: 'Картофель',
-          cardList: [
-            {
-              id: '1',
+          cardList: new Array(14).fill('').map((_item, index) => {
+            return {
+              id: `potato-${index + 1}`,
               imgSrc: potatoImg,
-              name: 'Картофель по-деревенски',
-              price: 220,
-              weight: 120,
-            },
-            {
-              id: '1',
-              imgSrc: potatoImg,
-              name: 'Картофель по-деревенски',
-              price: 220,
-              weight: 120,
-            },
-            {
-              id: '1',
-              imgSrc: potatoImg,
-              name: 'Картофель по-деревенски',
-              price: 220,
-              weight: 120,
-            },
-            {
-              id: '1',
-              imgSrc: potatoImg,
-              name: 'Картофель по-деревенски',
-              price: 220,
-              weight: 120,
-            },
-            {
-              id: '1',
-              imgSrc: potatoImg,
-              name: 'Картофель по-деревенски',
-              price: 220,
-              weight: 120,
-            },
-            {
-              id: '1',
-              imgSrc: potatoImg,
-              name: 'Картофель по-деревенски',
-              price: 220,
-              weight: 120,
-            },
-            {
-              id: '1',
-              imgSrc: potatoImg,
-              name: 'Картофель по-деревенски',
-              price: 220,
-              weight: 120,
-            },
-            {
-              id: '1',
-              imgSrc: potatoImg,
-              name: 'Картофель по-деревенски',
-              price: 220,
-              weight: 120,
-            },
-            {
-              id: '1',
-              imgSrc: potatoImg,
-              name: 'Картофель по-деревенски',
-              price: 220,
-              weight: 120,
-            },
-            {
-              id: '1',
-              imgSrc: potatoImg,
-              name: 'Картофель по-деревенски',
-              price: 220,
-              weight: 120,
-            },
-            {
-              id: '1',
-              imgSrc: potatoImg,
-              name: 'Картофель по-деревенски',
-              price: 220,
-              weight: 120,
-            },
-          ],
+              name: `Картофель по-деревенски ${index + 1}`,
+              price: 20 * (index + 1),
+              weight: 10 * (index + 1),
+            };
+          }),
         },
         {
           title: 'Пицца',
-          cardList: [
-            {
-              id: '1',
+          cardList: new Array(14).fill('').map((_item, index) => {
+            return {
+              id: `Пицца-${index + 1}`,
               imgSrc: pizzaImg,
-              name: 'Пицца',
-              price: 700,
-              weight: 600,
-            },
-            {
-              id: '1',
-              imgSrc: pizzaImg,
-              name: 'Пицца',
-              price: 700,
-              weight: 600,
-            },
-            {
-              id: '1',
-              imgSrc: pizzaImg,
-              name: 'Пицца',
-              price: 700,
-              weight: 600,
-            },
-            {
-              id: '1',
-              imgSrc: pizzaImg,
-              name: 'Пицца',
-              price: 700,
-              weight: 600,
-            },
-            {
-              id: '1',
-              imgSrc: pizzaImg,
-              name: 'Пицца',
-              price: 700,
-              weight: 600,
-            },
-            {
-              id: '1',
-              imgSrc: pizzaImg,
-              name: 'Пицца',
-              price: 700,
-              weight: 600,
-            },
-            {
-              id: '1',
-              imgSrc: pizzaImg,
-              name: 'Пицца',
-              price: 700,
-              weight: 600,
-            },
-            {
-              id: '1',
-              imgSrc: pizzaImg,
-              name: 'Пицца',
-              price: 700,
-              weight: 600,
-            },
-            {
-              id: '1',
-              imgSrc: pizzaImg,
-              name: 'Пицца',
-              price: 700,
-              weight: 600,
-            },
-          ],
+              name: `Пицца ${index + 1}`,
+              price: 20 * (index + 1),
+              weight: 10 * (index + 1),
+            };
+          }),
         },
       ];
 
@@ -262,6 +143,10 @@
         });
       }
 
+      function menuItemAddButtonClickHandler(itemData: TMenuItem) {
+        cartStore.cartItemList.push(itemData);
+      }
+
       onMounted(() => {
         const observer = new IntersectionObserver(sectionIntersectionObserverHandler);
 
@@ -278,6 +163,7 @@
 
         backButtonClickHandler,
         menuCategoryButtonClickHandler,
+        menuItemAddButtonClickHandler,
       };
     },
   });
@@ -312,16 +198,10 @@
     height: max-content;
   }
 
-  .restoraunt-screen__right-column {
+  .restoraunt-screen__cart {
     position: sticky;
     top: 44px;
     right: 0;
-
-    width: 320px;
-    height: 600px;
-
-    background-color: #eaeaea;
-    border-radius: 14px;
   }
 
   .restoraunt-screen__content {
@@ -377,7 +257,9 @@
   }
 
   .restoraunt-screen__menu-list {
-    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
   .restoraunt-screen__center-column {

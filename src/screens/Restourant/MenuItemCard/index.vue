@@ -19,7 +19,9 @@
       </span>
     </div>
 
-    <ButtonComponent type="secondary">
+    <ButtonComponent
+    @click="$emit('add-button-click', itemData)"
+    type="secondary">
       <span class="material-icons">
         add
       </span>
@@ -31,7 +33,7 @@
 
 <script lang="ts">
   import { defineComponent, PropType } from 'vue';
-  import { TMenuItemCard } from './types';
+  import { TMenuItem } from '@/types/api';
   import ButtonComponent from '@/components/Button';
 
   export default defineComponent({
@@ -41,10 +43,11 @@
     },
     props: {
       itemData: {
-        type: Object as PropType<TMenuItemCard>,
+        type: Object as PropType<TMenuItem>,
         required: true,
       },
     },
+    emits: ['add-button-click'],
   });
 </script>
 

@@ -1,4 +1,4 @@
-export type TMenuItemCard = {
+export type TMenuItem = {
   id: string,
   imgSrc: string,
   name: string,

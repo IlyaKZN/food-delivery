@@ -16,14 +16,14 @@
 
         <span
         v-if="icon"
-        class="material-icons button-component__icon--small">
+        class="button-component__icon material-icons button-component__icon--small">
           {{ icon }}
         </span>
       </template>
 
       <span
       v-if="icon && !text"
-      class="material-icons button-component__icon--big">
+      class="button-component__icon material-icons button-component__icon--big">
         {{ icon }}
       </span>
     </slot>
@@ -83,7 +83,7 @@
     gap: 6px;
 
     width: 100%;
-    height: 50px;
+    min-height: 50px;
     padding: 0;
     overflow: hidden;
 
