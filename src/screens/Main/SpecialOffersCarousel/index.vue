@@ -177,6 +177,8 @@
     display: flex;
     align-items: center;
     gap: 26px;
+
+    height: 100%;
   }
 
   .main-screen-special-offers-carousel__swiper {
@@ -201,8 +203,6 @@
   .main-screen-special-offers-carousel__swiper-container {
     display: flex;
     gap: 32px;
-
-    height: 13vw;
   }
 
   .main-screen-special-offers-carousel__swiper-slide-image {

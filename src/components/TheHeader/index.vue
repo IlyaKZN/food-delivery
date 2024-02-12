@@ -88,14 +88,18 @@
   @use '@/styles/variables' as *;
 
   .header-component {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     z-index: 10;
 
     display: flex;
 
+    width: 100%;
     min-height: 80px;
     padding: 15px 44px;
 
+    background-color: white;
     box-shadow: 0 2px 2px rgb(0 0 0 / 0.25);
   }
 

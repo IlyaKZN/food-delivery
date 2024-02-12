@@ -173,11 +173,13 @@
   @use '@/styles/variables' as *;
 
   .restoraunt-screen {
+    position: relative;
+
     display: flex;
     flex-grow: 1;
     justify-content: center;
 
-    padding: 44px;
+    padding: 124px 44px 44px;
   }
 
   .restoraunt-screen__back-button {
@@ -191,7 +193,7 @@
 
   .restoraunt-screen__left-column {
     position: sticky;
-    top: 44px;
+    top: 124px;
     left: 0;
 
     width: 210px;
@@ -200,7 +202,7 @@
 
   .restoraunt-screen__cart {
     position: sticky;
-    top: 44px;
+    top: 124px;
     right: 0;
   }
 
@@ -279,11 +281,13 @@
   }
 
   .restoraunt-screen__menu-button--active {
-    background-color: rgb(205 205 205);
+    background-color: #ddd;
   }
 
   .restoraunt-screen__menu-section-title {
     margin: 32px 0 16px;
+
+    scroll-margin-top: 80px;
 
     font-size: 48px;
     font-weight: 700;

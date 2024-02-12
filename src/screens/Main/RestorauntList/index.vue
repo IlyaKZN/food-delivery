@@ -1,10 +1,13 @@
 <template>
   <div class="main-screen-restoraunt-list">
-    <RestorauntCard
+    <div
     v-for="(cardData, index) in restorauntCardListData"
-    @click="restorauntCardClickHandler(cardData)"
-    :cardData="cardData"
-    :key="index"/>
+    class="main-screen-restoraunt-list__card-container"
+    :key="index">
+      <RestorauntCard
+      @click="restorauntCardClickHandler(cardData)"
+      :cardData="cardData"/>
+    </div>
   </div>
 </template>
 
@@ -25,7 +28,7 @@
       const restorauntCardListData: Array<TRestorauntCard> = [
         {
           id: '1',
-          name: 'Ресторан 1',
+          name: 'Ресторан 111 1111 1111 11111',
           openTime: '10:00',
           closeTime: '20:00',
           rating: 4.5,
@@ -169,10 +172,33 @@
 
 <style lang="scss">
   .main-screen-restoraunt-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 24px;
 
-    width: 100%;
+    width: calc(100% + 20px);
+    margin-left: -10px;
+
+    @media screen and (width <= 1023px) {
+      width: calc(100% + 16px);
+      margin-left: -8px;
+    }
+    @media screen and (width <= 1023px) {
+      width: calc(100% + 12px);
+      margin-left: -6px;
+    }
+  }
+
+  .main-screen-restoraunt-list__card-container {
+    width: 25%;
+    padding: 0 10px;
+
+    @media screen and (width <= 1023px) {
+      padding: 0 8px;
+    }
+    @media screen and (width <= 1023px) {
+      width: calc(100% / 3);
+      padding: 0 6px;
+    }
   }
 </style>

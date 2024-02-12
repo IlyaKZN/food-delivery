@@ -6,8 +6,18 @@
     loading="lazy"
     :src="cardData.src">
 
+    <span class="main-screen-restoraunt-card__name">{{ cardData.name }}</span>
+
     <div class="main-screen-restoraunt-card__info-container">
-      <span class="main-screen-restoraunt-card__name">{{ cardData.name }}</span>
+      <span class="main-screen-restoraunt-card__rating">
+        <span class="material-icons main-screen-restoraunt-card__rating-icon">
+          star
+        </span>
+
+        <span class="main-screen-restoraunt-card__rating-text">
+          {{ cardData.rating }}
+        </span>
+      </span>
 
       <span class="main-screen-restoraunt-card__work-time">
         <span class="material-icons main-screen-restoraunt-card__work-time-icon">
@@ -17,16 +27,6 @@
         {{ cardData.openTime }} - {{ cardData.closeTime }}
       </span>
     </div>
-
-    <span class="main-screen-restoraunt-card__rating">
-      <span class="material-icons main-screen-restoraunt-card__rating-icon">
-        star
-      </span>
-
-      <span class="main-screen-restoraunt-card__rating-text">
-        {{ cardData.rating }}
-      </span>
-    </span>
   </div>
 </template>
 
@@ -77,14 +77,22 @@
   .main-screen-restoraunt-card__info-container {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 16px;
 
     width: 100%;
   }
 
   .main-screen-restoraunt-card__name {
+    overflow: hidden;
+
     font-size: 32px;
     font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @media screen and (width <= 1200px) {
+      font-size: 24px;
+    }
   }
 
   .main-screen-restoraunt-card__work-time {
@@ -94,6 +102,10 @@
 
     font-size: 16px;
     font-weight: 500;
+
+    @media screen and (width <= 1023px) {
+      font-size: 14px;
+    }
   }
 
   .main-screen-restoraunt-card__work-time-icon {
@@ -111,10 +123,18 @@
   .main-screen-restoraunt-card__rating-icon {
     font-size: 20px !important;
     color: orange;
+
+    @media screen and (width <= 1023px) {
+      font-size: 16px;
+    }
   }
 
   .main-screen-restoraunt-card__rating-text {
     font-size: 16px;
     font-weight: 500;
+
+    @media screen and (width <= 1023px) {
+      font-size: 14px;
+    }
   }
 </style>
