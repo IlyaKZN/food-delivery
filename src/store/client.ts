@@ -4,13 +4,16 @@ type TGroupState = {
   windowData: {
     width: number,
     height: number,
-  } | null,
+  },
   windowSizeWatcherEnabled: boolean,
 };
 
 const useClientStore = defineStore('client', {
   state: (): TGroupState => ({
-    windowData: null,
+    windowData: {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    },
     windowSizeWatcherEnabled: false,
   }),
   actions: {

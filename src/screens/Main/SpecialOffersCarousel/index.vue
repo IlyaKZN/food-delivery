@@ -57,7 +57,22 @@
         const swiperParams = {
           height: 528,
           slidesPerView: 3,
-          spaceBetween: 32,
+          breakpoints: {
+            0: {
+              slidesPerView: 1.1,
+              spaceBetween: 8,
+            },
+            576: {
+              slidesPerView: 2.2,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 12,
+            },
+            1400: {
+              spaceBetween: 20,
+            },
+          },
         };
 
         swiper.value.addEventListener('swiperslidechange', (event: CustomEvent) => {
@@ -194,6 +209,10 @@
     height: 64px;
 
     border-radius: 50%;
+
+    @media screen and (width <= 1023px) {
+      display: none;
+    }
   }
 
   .main-screen-special-offers-carousel__swiper-nav-button--disabled {
@@ -217,6 +236,11 @@
 
     &:hover {
       filter: brightness(110%);
+    }
+
+    @media screen and (width <= 575px) {
+      width: 100%;
+      padding: 0;
     }
   }
 </style>

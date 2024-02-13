@@ -7,7 +7,7 @@
     </div>
 
     <div
-    v-if="isShowControlElements"
+    v-if="isShowControlElements && windowData.width > 575"
     class="header-component__textfield-container">
       <TextFieldComponent
       v-model="searchValue"
@@ -42,6 +42,7 @@
   import TextFieldComponent from '../TextField';
   import AvatarWidget from './AvatarWidget';
   import useProfileStore from '@/store/profile';
+  import useClientStore from '@/store/client';
 
   export default defineComponent({
     name: 'TheHeaderComponent',
@@ -52,8 +53,10 @@
     },
     setup() {
       const profileStore = useProfileStore();
+      const clientStore = useClientStore();
 
       const { isAuthorized } = storeToRefs(profileStore);
+      const { windowData } = storeToRefs(clientStore);
 
       const router = useRouter();
 
@@ -77,6 +80,8 @@
         searchValue,
         isAuthorized,
         isShowControlElements,
+        windowData,
+
         loginButtonClickHandler,
         logoClickHandler,
       };
@@ -101,6 +106,23 @@
 
     background-color: white;
     box-shadow: 0 2px 2px rgb(0 0 0 / 0.25);
+
+    // @media screen and (width <= 1023px) {
+    //   padding: 0 8px;
+    // }
+    // @media screen and (width <= 1023px) {
+    //   width: calc(100% / 3);
+    //   padding: 0 6px;
+    // }
+    // @media screen and (width <= 767px) {
+    //   width: calc(100% / 2);
+    //   padding: 0 4px;
+    // }
+    @media screen and (width <= 575px) {
+      width: 100%;
+      min-height: 40px;
+      padding: 8px;
+    }
   }
 
   .header-component__logo-container {

@@ -187,6 +187,16 @@
       width: calc(100% + 12px);
       margin-left: -6px;
     }
+    @media screen and (width <= 767px) {
+      row-gap: 16px;
+
+      width: calc(100% + 8px);
+      margin-left: -4px;
+    }
+    @media screen and (width <= 575px) {
+      width: 100%;
+      margin-left: 0;
+    }
   }
 
   .main-screen-restoraunt-list__card-container {
@@ -199,6 +209,14 @@
     @media screen and (width <= 1023px) {
       width: calc(100% / 3);
       padding: 0 6px;
+    }
+    @media screen and (width <= 767px) {
+      width: calc(100% / 2);
+      padding: 0 4px;
+    }
+    @media screen and (width <= 575px) {
+      width: 100%;
+      padding: 0;
     }
   }
 </style>

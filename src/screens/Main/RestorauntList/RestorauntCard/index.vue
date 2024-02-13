@@ -59,7 +59,7 @@
 
   .main-screen-restoraunt-card__image {
     width: 100%;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 
     border-radius: 14px;
 
@@ -72,6 +72,23 @@
     &:hover {
       transform: scale(1.04);
     }
+
+    @media screen and (width <= 1400px) {
+      margin-bottom: 8px;
+    }
+    @media screen and (width <= 1023px) {
+      // margin-bottom: 10px;
+    }
+    @media screen and (width <= 1023px) {
+      margin-bottom: 6px;
+    }
+    @media screen and (width <= 767px) {
+      margin-bottom: 4px;
+    }
+
+    // @media screen and (width <= 575px) {
+    //   margin-bottom: 16px;
+    // }
   }
 
   .main-screen-restoraunt-card__info-container {
