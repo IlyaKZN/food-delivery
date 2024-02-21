@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia';
 
-type TProfileState = {
-  isAuthorized: boolean,
-};
-
 const useProfileStore = defineStore('profile', {
-  state: (): TProfileState => ({
-    isAuthorized: false,
+  state: () => ({
+    token: localStorage.getItem('token') || '',
   }),
   actions: {
+    setToken(token: string) {
+      this.token = token;
+      localStorage.setItem('token', token);
+    }
   },
 });
 

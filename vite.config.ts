@@ -10,15 +10,7 @@ import { resolve } from 'node:path';
 // https://vitejs.dev/config/
 export default defineConfig(() => {
   const developmentPlugins = [
-    {
-      ...eslint({
-        include: '**/*.+(vue|js|ts)',
-        extensions: ['js', 'vue', 'ts'],
-        cache: true,
-        fix: true,
-      }),
-      enforce: 'pre',
-    },
+    
     {
       ...stylelint({
         fix: true,
@@ -48,6 +40,13 @@ export default defineConfig(() => {
       hmr: {
         overlay: false,
       },
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3000',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        }
+      }
     },
     resolve: {
       alias: [

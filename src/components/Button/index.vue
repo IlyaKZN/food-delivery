@@ -7,6 +7,7 @@
       'button-component--reverse': iconPosition === 'left'
     }
   ]"
+  type="button"
   :disabled="disabled">
     <slot>
       <template v-if="text">

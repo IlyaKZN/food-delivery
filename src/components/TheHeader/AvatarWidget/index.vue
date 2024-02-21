@@ -37,7 +37,7 @@
         </div>
       </ButtonComponent>
 
-      <ButtonComponent class="avatar-widget__button">
+      <ButtonComponent class="avatar-widget__button" @click="logout">
         <div class="avatar-widget__menu-row">
           <span>Выйти</span>
 
@@ -51,6 +51,7 @@
 <script lang="ts">
   import { defineComponent, ref } from 'vue';
   import ButtonComponent from '@/components/Button';
+  import  useProfileStore  from '@/store/profile';
 
   export default defineComponent({
     name: 'AvatarWidget',
@@ -58,13 +59,19 @@
       ButtonComponent,
     },
     setup() {
+      const profile = useProfileStore()
       const isShowMenu = ref(false);
 
       function avatarWidgetClickOutsideHandler() {
         isShowMenu.value = false;
       }
 
+      function logout() {
+        profile.setToken('');
+      }
+
       return {
+        logout,
         isShowMenu,
         avatarWidgetClickOutsideHandler,
       };

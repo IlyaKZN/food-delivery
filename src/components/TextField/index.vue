@@ -7,6 +7,7 @@
     </span>
 
     <input
+    required
     @blur="blurInputHandler"
     @focus="focusInputHandler"
     @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"

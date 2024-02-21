@@ -55,7 +55,11 @@
       const profileStore = useProfileStore();
       const clientStore = useClientStore();
 
-      const { isAuthorized } = storeToRefs(profileStore);
+      const { token } = storeToRefs(profileStore);
+
+      const isAuthorized = computed(() => {
+        return !!token.value
+      });
       const { windowData } = storeToRefs(clientStore);
 
       const router = useRouter();
