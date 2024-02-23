@@ -10,7 +10,15 @@ import { resolve } from 'node:path';
 // https://vitejs.dev/config/
 export default defineConfig(() => {
   const developmentPlugins = [
-    
+    {
+      ...eslint({
+        include: '**/*.+(vue|js|ts)',
+        extensions: ['js', 'vue', 'ts'],
+        cache: true,
+        fix: true,
+      }),
+      enforce: 'pre',
+    },
     {
       ...stylelint({
         fix: true,
@@ -35,6 +43,7 @@ export default defineConfig(() => {
         },
       }),
     ],
+    root: resolve(__dirname, './'),
     server: {
       port: 9000,
       hmr: {
@@ -45,8 +54,8 @@ export default defineConfig(() => {
           target: 'http://localhost:3000',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
-        }
-      }
+        },
+      },
     },
     resolve: {
       alias: [

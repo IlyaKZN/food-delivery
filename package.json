@@ -3,9 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "start": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "start": "node ./frontend/scripts/dev.js",
+    "build": "node ./frontend/scripts/build.js",
+    "lint": "node ./frontend/scripts/lint.js",
+    "lint-fix": "node ./frontend/scripts/lint.js -- --fix"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.3",
@@ -13,6 +14,7 @@
     "@types/node": "^20.10.5",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@vitejs/plugin-vue": "^4.5.2",
+    "concurrently": "^8.2.2",
     "eslint": "^8.56.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.0",

@@ -58,7 +58,7 @@
       const { token } = storeToRefs(profileStore);
 
       const isAuthorized = computed(() => {
-        return !!token.value
+        return !!token.value;
       });
       const { windowData } = storeToRefs(clientStore);
 
