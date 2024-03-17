@@ -12,7 +12,6 @@
 
       <div class="main-screen-special-offers-carousel__swiper">
         <swiper-container
-        @slide-change="console.log"
         class="main-screen-special-offers-carousel__swiper-container"
         ref="swiper">
           <swiper-slide

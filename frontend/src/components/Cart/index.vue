@@ -136,7 +136,8 @@
     flex-direction: column;
     gap: 14px;
 
-    width: 320px;
+    width: 100%;
+    max-width: 320px;
     height: calc(100vh - 300px);
     padding: 14px 4px 14px 14px;
     overflow: hidden;

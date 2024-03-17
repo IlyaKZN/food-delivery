@@ -69,10 +69,11 @@
 
     transition: transform 0.07s ease;
 
-    &:hover {
-      transform: scale(1.04);
+    @media screen and (width > 1023px) {
+      &:hover {
+        transform: scale(1.04);
+      }
     }
-
     @media screen and (width <= 1400px) {
       margin-bottom: 8px;
     }

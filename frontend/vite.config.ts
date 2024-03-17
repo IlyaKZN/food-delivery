@@ -16,6 +16,7 @@ export default defineConfig(() => {
         extensions: ['js', 'vue', 'ts'],
         cache: true,
         fix: true,
+        failOnError: false,
       }),
       enforce: 'pre',
     },

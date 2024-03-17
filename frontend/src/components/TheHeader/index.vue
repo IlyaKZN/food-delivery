@@ -7,7 +7,7 @@
     </div>
 
     <div
-    v-if="isShowControlElements && windowData.width > 575"
+    v-if="isShowControlElements && windowData.width > 766"
     class="header-component__textfield-container">
       <TextFieldComponent
       v-model="searchValue"
@@ -111,9 +111,10 @@
     background-color: white;
     box-shadow: 0 2px 2px rgb(0 0 0 / 0.25);
 
-    // @media screen and (width <= 1023px) {
-    //   padding: 0 8px;
-    // }
+    @media screen and (width <= 1023px) {
+      padding: 15px 20px;
+    }
+
     // @media screen and (width <= 1023px) {
     //   width: calc(100% / 3);
     //   padding: 0 6px;

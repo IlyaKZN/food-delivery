@@ -19,11 +19,13 @@
       class="login-screen__title">
         Вход
       </h3>
+
       <h3
       v-if="isRegister"
       class="login-screen__title">
         Вход
       </h3>
+
       <h3
       v-if="isForget"
       class="login-screen__title">
@@ -98,36 +100,6 @@
         }
       }
 
-      function submitForm(e: any) {
-        e.preventDefault();
-        if (screenState.value === 'login') {
-          login();
-        }
-        if (screenState.value === 'register') {
-          register();
-        }
-        if (screenState.value === 'forget') {
-          forget();
-        }
-      }
-
-      function switchOrActionScreen(screen: string) {
-        if (screenState.value === screen) {
-          if (screen === 'login') {
-            login();
-          }
-          if (screen === 'register') {
-            register();
-          }
-          if (screen === 'forget') {
-            forget();
-          }
-
-          return;
-        }
-        screenState.value = screen;
-      }
-
       const makeJsonRequest = async (url: string, method: string, body: any) => {
         try {
           const response = await fetch(url, {
@@ -158,9 +130,7 @@
             profileStore.setToken(data.token);
             router.push({ name: 'main' });
           })
-          .catch((error) => {
-            alert(error);
-          });
+          .catch(console.error);
       }
 
       // like login
@@ -173,9 +143,7 @@
             profileStore.setToken(data.token);
             router.push({ name: 'main' });
           })
-          .catch((error) => {
-            alert(error);
-          });
+          .catch(console.error);
 
       }
 
@@ -188,9 +156,37 @@
             profileStore.setToken(data.token);
             router.push({ name: 'main' });
           })
-          .catch((error) => {
-            alert(error);
-          });
+          .catch(console.error);
+      }
+
+      function submitForm(e: any) {
+        e.preventDefault();
+        if (screenState.value === 'login') {
+          login();
+        }
+        if (screenState.value === 'register') {
+          register();
+        }
+        if (screenState.value === 'forget') {
+          forget();
+        }
+      }
+
+      function switchOrActionScreen(screen: string) {
+        if (screenState.value === screen) {
+          if (screen === 'login') {
+            login();
+          }
+          if (screen === 'register') {
+            register();
+          }
+          if (screen === 'forget') {
+            forget();
+          }
+
+          return;
+        }
+        screenState.value = screen;
       }
 
       const isLogin = computed(() => screenState.value === 'login');

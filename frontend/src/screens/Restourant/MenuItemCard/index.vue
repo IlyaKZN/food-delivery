@@ -56,7 +56,9 @@
     display: flex;
     flex-direction: column;
 
-    width: 260px;
+    width: 100%;
+    max-width: 260px;
+    aspect-ratio: 1.6;
     padding: 12px;
 
     border-radius: 14px;
@@ -64,8 +66,8 @@
   }
 
   .menu-item-card__image {
-    width: 236px;
-    height: 236px;
+    width: 100%;
+    aspect-ratio: 1;
     margin-bottom: 12px;
 
     border-radius: 16px;

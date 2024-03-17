@@ -12,7 +12,7 @@
       </h2>
 
       <ControlPanel
-      v-if="windowData?.width > 575"
+      v-if="windowData?.width > 766"
       v-model:filter="activeFilter"
       v-model:sort="sort"
       class="main-screen__control-panel"/>

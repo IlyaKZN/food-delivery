@@ -35,7 +35,7 @@
   }
 
   .mobile-control-panel__button {
-    min-height: 36px;
+    aspect-ratio: 5;
 
     .button-component__icon {
       width: 24px;

@@ -1,7 +1,9 @@
 <template>
   <div class="restoraunt-screen">
     <div class="restoraunt-screen__content">
-      <div class="restoraunt-screen__left-column">
+      <div
+      v-if="windowData.width > 1023"
+      class="restoraunt-screen__left-column">
         <ButtonComponent
         @click="backButtonClickHandler"
         class="restoraunt-screen__back-button"
@@ -62,17 +64,27 @@
         </template>
       </div>
 
-      <CartComponent class="restoraunt-screen__cart"/>
+      <CartComponent
+      v-if="windowData.width > 1023"
+      class="restoraunt-screen__cart"/>
+
+      <ButtonComponent
+      v-if="windowData.width <= 1023 && orderCost !== 0"
+      class="restoraunt-screen__cart-button">
+        {{ orderCost }} ₽
+      </ButtonComponent>
     </div>
   </div>
 </template>
 
 <script lang="ts">
   import { defineComponent, ref, onMounted } from 'vue';
+  import { storeToRefs } from 'pinia';
   import { useRouter } from 'vue-router';
   import ButtonComponent from '@/components/Button';
   import MenuItemCard from './MenuItemCard';
   import CartComponent from '@/components/Cart';
+  import useClientStore from '@/store/client';
   import useCartStore from '@/store/cart';
   import restImg from '@/assets/rest.png';
   import potatoImg from '@/assets/potato.png';
@@ -90,6 +102,10 @@
       const router = useRouter();
 
       const cartStore = useCartStore();
+      const clientStore = useClientStore();
+
+      const { windowData } = storeToRefs(clientStore);
+      const { orderCost } = storeToRefs(cartStore);
 
       const activeCategoryMenu = ref('Картофель');
       const sectionTitles = ref<Array<HTMLElement>>();
@@ -160,6 +176,8 @@
         activeCategoryMenu,
         restImg,
         menuSectionDataList,
+        windowData,
+        orderCost,
 
         backButtonClickHandler,
         menuCategoryButtonClickHandler,
@@ -204,6 +222,10 @@
     position: sticky;
     top: 124px;
     right: 0;
+
+    @media screen and (width <= 766px) {
+      display: none;
+    }
   }
 
   .restoraunt-screen__content {
@@ -265,12 +287,13 @@
   }
 
   .restoraunt-screen__center-column {
-    width: 1100px;
+    width: 100%;
+    max-width: 1100px;
 
     @media (width < 1920px) {
       grid-template-columns: repeat(3, 1fr);
 
-      width: 820px;
+      max-width: 820px;
     }
   }
 
@@ -302,5 +325,15 @@
     @media (width < 1920px) {
       grid-template-columns: repeat(3, 1fr);
     }
+  }
+
+  .restoraunt-screen__cart-button {
+    position: fixed;
+    right: 20px;
+    bottom: 30px;
+
+    width: 124px;
+
+    border-radius: 25px;
   }
 </style>
