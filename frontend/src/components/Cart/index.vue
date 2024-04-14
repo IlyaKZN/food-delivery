@@ -1,8 +1,17 @@
 <template>
   <div class="cart-component">
-    <h3 class="cart-component__title">
-      Корзина
-    </h3>
+    <div class="cart-component__header">
+      <h3 class="cart-component__title">
+        Корзина
+      </h3>
+
+      <ButtonComponent
+      v-if="orderCost"
+      @click="cartStore.clearCart"
+      class="cart-component__clear-button"
+      text="Очистить"
+      :type="'base'"/>
+    </div>
 
     <ul
     class="cart-component__items-list"
@@ -29,8 +38,9 @@
 
     <div class="cart-component__button-container">
       <ButtonComponent
+      v-if="orderCost"
       class="cart-component__button--next"
-      text="К оплате"
+      :text="`К оплате ${orderCost} ₽`"
       type="secondary"/>
     </div>
   </div>
@@ -57,7 +67,7 @@
 
       const cartStore = useCartStore();
 
-      const { cartItemList } = storeToRefs(cartStore);
+      const { cartItemList, orderCost } = storeToRefs(cartStore);
 
       const formattedItemList = computed<Array<TCartItem>>(() => {
         const itemMap: Record<string, TCartItem> = {};
@@ -121,6 +131,8 @@
         itemsContainer,
         itemsContainerHasScroll,
         formattedItemList,
+        orderCost,
+        cartStore,
 
         itemDeleteButtonClickHandler,
         itemIncButtonClickHandler,
@@ -137,12 +149,28 @@
     gap: 14px;
 
     width: 320px;
-    height: calc(100vh - 300px);
+    height: calc(100vh - 140px);
     padding: 14px 4px 14px 14px;
     overflow: hidden;
 
     border-radius: 14px;
     box-shadow: 0 0 8px rgb(0 0 0 / 0.4);
+  }
+
+  .cart-component__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    min-height: 38px;
+    padding-right: 8px;
+  }
+
+  .cart-component__clear-button {
+    width: max-content;
+    min-height: 100%;
+    padding: 0 8px;
   }
 
   .cart-component__title {

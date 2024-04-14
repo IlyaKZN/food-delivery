@@ -15,35 +15,9 @@ const useCartStore = defineStore('cart', {
     },
   },
   actions: {
-    // addItem(itemData: TMenuItem) {
-    //   const itemIndex = this.cartItemList.findIndex((item) => item.id === itemData.id);
-
-    //   if (itemIndex !== -1) {
-    //     const item = this.cartItemList[itemIndex];
-
-    //     this.cartItemList[itemIndex] = {
-    //       ...item,
-    //       count: item.count + 1,
-    //       price: item.price + itemData.price,
-    //     };
-    //   } else {
-    //     this.cartItemList.push({
-    //       ...itemData,
-    //       count: 1,
-    //     });
-    //   }
-    // },
-    // removeItem(itemData: TMenuItem) {
-    //   const listItem = this.cartItemList.find((item) => item.id === itemData.id);
-
-    //   if (!listItem) return;
-
-    //   if (listItem?.count === 1) {
-    //     this.cartItemList = this.cartItemList.filter((cartItem) => cartItem.id !== itemData.id);
-    //   } else {
-    //     listItem.count -= 1;
-    //   }
-    // },
+    clearCart() {
+      this.cartItemList = [];
+    },
   },
 });
 

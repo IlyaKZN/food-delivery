@@ -8,7 +8,7 @@ const useProfileStore = defineStore('profile', {
     setToken(token: string) {
       this.token = token;
       localStorage.setItem('token', token);
-    }
+    },
   },
 });
 
