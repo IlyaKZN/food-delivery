@@ -58,6 +58,11 @@ export default defineConfig(() => {
         },
       },
     },
+    build: {
+      rollupOptions: {
+        input: 'frontend/index.html',
+      },
+    },
     resolve: {
       alias: [
         {

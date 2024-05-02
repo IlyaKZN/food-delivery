@@ -149,7 +149,7 @@
     gap: 14px;
 
     width: 320px;
-    height: calc(100vh - 140px);
+    min-height: 400px;
     padding: 14px 4px 14px 14px;
     overflow: hidden;
 

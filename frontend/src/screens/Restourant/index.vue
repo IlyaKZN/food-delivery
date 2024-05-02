@@ -204,6 +204,8 @@
     position: sticky;
     top: 124px;
     right: 0;
+
+    height: calc(100vh - 200px);
   }
 
   .restoraunt-screen__content {
