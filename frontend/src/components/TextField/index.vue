@@ -102,7 +102,7 @@
     align-items: center;
 
     width: 300px;
-    min-height: 50px;
+    min-height: 40px;
     overflow: visible;
 
     background: #fff;
@@ -114,7 +114,7 @@
   .text-field-component-icon {
     margin-left: 12px;
 
-    font-size: 36px !important;
+    font-size: 24px !important;
     color: #557ee5;
   }
 
@@ -129,14 +129,14 @@
 
   .text-field-component__input {
     width: 100%;
-    height: 50px;
-    padding: 0 12px;
+    height: 40px;
+    padding: 0 16px;
 
     border: 0;
     border-radius: 14px;
 
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 16px;
+    line-height: 20px;
 
     &:focus-visible {
       outline: 0;
@@ -150,9 +150,9 @@
 
     background-color: white;
 
-    font-size: 20px;
-    line-height: 24px;
-    color: rgb(0 0 0 / 0.5);
+    font-size: 16px;
+    line-height: 20px;
+    color: rgb(0 0 0 / 0.6);
 
     pointer-events: none;
 
@@ -161,7 +161,7 @@
   }
 
   .text-field-component__placeholder--right {
-    left: 62px;
+    left: 48px;
   }
 
   .text-field-component__placeholder--top {

@@ -57,6 +57,10 @@
         opacity 0.1s linear,
         background-color 0.05s linear;
     }
+  }
+
+  .icon-component--clickable {
+    cursor: pointer;
 
     &:hover::after {
       opacity: 1;
@@ -65,9 +69,5 @@
     &:active::after {
       background-color: rgb(0 0 0 / 0.1);
     }
-  }
-
-  .icon-component--clickable {
-    cursor: pointer;
   }
 </style>

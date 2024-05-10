@@ -15,6 +15,7 @@
       </p>
 
       <ButtonComponent
+      @click="goToEditor"
       :class="$style.button"
       text="Редактировать"/>
     </div>
@@ -23,6 +24,7 @@
 
 <script lang="ts">
   import { defineComponent, PropType } from 'vue';
+  import { useRouter } from 'vue-router';
   import { storeToRefs } from 'pinia';
   import ButtonComponent from '@/components/Button';
   import useClientStore from '@/store/client';
@@ -39,13 +41,26 @@
         required: true,
       },
     },
-    setup() {
+    setup(props) {
       const clientStore = useClientStore();
 
       const { windowData } = storeToRefs(clientStore);
 
+      const router = useRouter();
+
+      function goToEditor() {
+        router.push({
+          name: 'restaurant-editor',
+          params: {
+            id: props.data.id,
+          },
+        });
+      }
+
       return {
         windowData,
+
+        goToEditor,
       };
     },
   });

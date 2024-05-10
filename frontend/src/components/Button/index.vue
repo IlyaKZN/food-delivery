@@ -153,12 +153,4 @@
 
     font-size: 24px !important;
   }
-
-  // .button-component__icon--big {
-  //   display: block !important;
-
-  //   width: 48px;
-
-  //   font-size: 48px !important;
-  // }
 </style>

@@ -7,6 +7,7 @@
         </h2>
 
         <ButtonComponent
+        @click="createButtonClickHandler"
         :class="$style['add-button']"
         icon="add"
         iconPosition="left"
@@ -26,6 +27,7 @@
 
 <script lang="ts">
   import { defineComponent, ref } from 'vue';
+  import { useRouter } from 'vue-router';
   import { storeToRefs } from 'pinia';
   import restImg from '@/assets/rest.png';
   import RestaurantCard from './RestaurantCard';
@@ -44,6 +46,8 @@
 
       const { windowData } = storeToRefs(clientStore);
 
+      const router = useRouter();
+
       const restaurantList = ref<Array<TParnterRestaurantCardData>>([]);
 
       for (let i = 1; i < 20; i += 1) {
@@ -57,9 +61,17 @@
         );
       }
 
+      function createButtonClickHandler() {
+        router.push({
+          name: 'restaurant-editor',
+        }).catch(console.error);
+      }
+
       return {
         restaurantList,
         windowData,
+
+        createButtonClickHandler,
       };
     },
   });
