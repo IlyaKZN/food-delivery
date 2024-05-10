@@ -11,7 +11,6 @@
     @focus="focusInputHandler"
     @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     class="text-field-component__input"
-    maxlength="30"
     required
     spellcheck="false"
     :type="type === 'password' && !isShowPassword ? 'password' : 'text'"
