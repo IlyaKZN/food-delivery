@@ -17,14 +17,14 @@
 
         <span
         v-if="icon"
-        class="button-component__icon material-icons button-component__icon--small">
+        class="button-component__icon material-icons">
           {{ icon }}
         </span>
       </template>
 
       <span
       v-if="icon && !text"
-      class="button-component__icon material-icons button-component__icon--big">
+      class="button-component__icon material-icons">
         {{ icon }}
       </span>
     </slot>
@@ -46,7 +46,7 @@
         default: null,
       },
       type: {
-        type: String as PropType<'primary' | 'secondary' | 'base'>,
+        type: String as PropType<'primary' | 'secondary' | 'base' | 'accent'>,
         default: 'primary',
       },
       iconPosition: {
@@ -84,8 +84,8 @@
     gap: 6px;
 
     width: 100%;
-    min-height: 50px;
-    padding: 0;
+    min-height: 40px;
+    padding: 0 14px;
     overflow: hidden;
 
     background-color: $color-app-primary;
@@ -142,7 +142,11 @@
     background-color: #eaeaea;
   }
 
-  .button-component__icon--small {
+  .button-component--accent {
+    background-color: $color-app-accent;
+  }
+
+  .button-component__icon {
     display: block !important;
 
     width: 24px;
@@ -150,11 +154,11 @@
     font-size: 24px !important;
   }
 
-  .button-component__icon--big {
-    display: block !important;
+  // .button-component__icon--big {
+  //   display: block !important;
 
-    width: 48px;
+  //   width: 48px;
 
-    font-size: 48px !important;
-  }
+  //   font-size: 48px !important;
+  // }
 </style>

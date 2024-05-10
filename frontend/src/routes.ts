@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import MainScreen from './screens/Main';
 import LoginScreen from './screens/Login';
 import RestorauntScreen from './screens/Restourant';
+import PartnerRestaurantListScreen from './screens/PartnerRestaurantList';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,6 +21,11 @@ const router = createRouter({
       name: 'restoraunt',
       path: '/restoraunt/:id',
       component: RestorauntScreen,
+    },
+    {
+      name: 'partner-restaurant-list',
+      path: '/partner-restaurant-list',
+      component: PartnerRestaurantListScreen,
     },
   ],
   scrollBehavior() {
