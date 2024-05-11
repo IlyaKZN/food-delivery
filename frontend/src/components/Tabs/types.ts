@@ -1,0 +1,1 @@
+export type TTabs = Array<{ text: string, value: string }>
