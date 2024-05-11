@@ -22,7 +22,9 @@
           :tabs="tabs"/>
         </div>
 
-        <div :class="$style['form-body']">
+        <div
+        v-if="activeTab === 'info'"
+        :class="$style['form-body']">
           <div :class="$style['first-column']">
             <img
             v-if="mode === 'edit'"
@@ -92,6 +94,22 @@
         </div>
 
         <div
+        v-else
+        :class="$style.menu">
+          <MenuItem
+          v-for="menuItem in menuList"
+          @edit-button-click="(value) => menuItemEditorData = value"
+          :itemData="menuItem"
+          :key="menuItem.id"/>
+
+          <div :class="$style['add-memu-item-button']">
+            <IconComponent
+            :class="$style['add-menu-item-icon']"
+            icon="add"/>
+          </div>
+        </div>
+
+        <div
         v-if="mode === 'create'"
         :class="$style.footer">
           <ButtonComponent
@@ -101,6 +119,12 @@
         </div>
       </div>
     </div>
+
+    <ModalComponent
+    v-if="menuItemEditorData"
+    @close="menuItemEditorData = null">
+      <MenuItemEditor :itemData="menuItemEditorData"/>
+    </ModalComponent>
   </div>
 </template>
 
@@ -111,9 +135,14 @@
   import TextFieldComponent from '@/components/TextField';
   import CheckboxComponent from '@/components/Checkbox';
   import TabsComponent, { TTabs } from '@/components/Tabs';
+  import MenuItem from './MenuItem';
+  import IconComponent from '@/components/Icon';
+  import ModalComponent from '@/components/Modal';
+  import MenuItemEditor from './MenuItemEditor';
   import useUpload from '@/hooks/useUpload';
   import restImg from '@/assets/rest.png';
-  import IconComponent from '@/components/Icon';
+  import potatoImg from '@/assets/potato.png';
+  import { TMenuItem } from '@/types/api';
 
   export default defineComponent({
     name: 'RestaurantEditorScreen',
@@ -123,13 +152,16 @@
       TextFieldComponent,
       IconComponent,
       CheckboxComponent,
+      MenuItem,
+      ModalComponent,
+      MenuItemEditor,
     },
     setup() {
       const router = useRouter();
       const route = useRoute();
 
       const mode = ref<'create' | 'edit'>('create');
-      const activeTab = ref('info');
+      const activeTab = ref<'info' | 'menu'>('info');
 
       const name = ref('');
       const address = ref('');
@@ -139,6 +171,8 @@
       const toWorkTime = ref('');
       const isPickup = ref(false);
       const isDelivery = ref(false);
+
+      const menuItemEditorData = ref<TMenuItem | null>(null);
 
       const tabs: TTabs = [
         {
@@ -150,6 +184,16 @@
           value: 'menu',
         },
       ];
+
+      const menuList: Array<TMenuItem> = new Array(14).fill('').map((_item, index) => {
+        return {
+          id: `potato-${index + 1}`,
+          imgSrc: potatoImg,
+          name: `Картофель по-деревенски ${index + 1}`,
+          price: 20 * (index + 1),
+          weight: 10 * (index + 1),
+        };
+      });
 
       function goToRestaurantList() {
         router.push({
@@ -181,6 +225,8 @@
         toWorkTime,
         isPickup,
         isDelivery,
+        menuList,
+        menuItemEditorData,
 
         goToRestaurantList,
         selectImage,
@@ -361,5 +407,46 @@
 
   .checkbox {
     margin-bottom: 20px;
+  }
+
+  .menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+
+    padding: 20px 20px 40px;
+
+    @media screen and (width <= 767px) {
+      grid-template-columns: 1fr;
+
+      padding: 20px 14px;
+    }
+  }
+
+  .add-memu-item-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 124px;
+
+    border-radius: 14px;
+    box-shadow: 0 0 8px rgb(0 0 0 / 0.4);
+
+    cursor: pointer;
+
+    transition: background-color 0.1s linear;
+
+    &:hover {
+      background-color: rgb(0 0 0 / 0.1);
+    }
+  }
+
+  .add-menu-item-icon {
+    width: 50px;
+    height: 50px;
+
+    font-size: 50px !important;
   }
 </style>
