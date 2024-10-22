@@ -6,13 +6,21 @@
       {{ icon }}
     </span>
 
+    <div
+    v-if="multiline"
+    class="text-field-component__textarea-container">
+      <textarea
+      class="text-field-component__textarea"/>
+    </div>
+
     <input
+    v-else
     @blur="blurInputHandler"
     @focus="focusInputHandler"
     @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     class="text-field-component__input"
-    required
-    spellcheck="false"
+    :readonly="readonly"
+    :spellcheck="false"
     :type="type === 'password' && !isShowPassword ? 'password' : 'text'"
     :value="modelValue">
 
@@ -25,18 +33,19 @@
     </span>
 
     <div
-    class="text-field-component__placeholder"
+    v-if="label"
+    class="text-field-component__label"
     :class="{
-      'text-field-component__placeholder--top': isPlaceholderOnTop,
-      'text-field-component__placeholder--right': icon,
+      'text-field-component__label--top': isLabelOnTop,
+      'text-field-component__label--right': icon,
     }">
-      <span>{{ placeholder }}</span>
+      <span>{{ label }}</span>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref, computed, PropType } from 'vue';
+  import { defineComponent, ref, computed, PropType, nextTick } from 'vue';
 
   export default defineComponent({
     name: 'TextFieldComponent',
@@ -45,7 +54,7 @@
         type: String,
         default: '',
       },
-      placeholder: {
+      label: {
         type: String,
         default: null,
       },
@@ -57,13 +66,23 @@
         type: String as PropType<'default' | 'password' | 'phoneNumber'>,
         default: 'default',
       },
+      multiline: {
+        type: Boolean,
+        default: false,
+      },
+      readonly: {
+        type: Boolean,
+        default: false,
+      },
     },
     emits: ['update:modelValue'],
     setup(props, { emit }) {
       const focusedOnInput = ref(false);
       const isShowPassword = ref(false);
 
-      const isPlaceholderOnTop = computed(() => {
+      const isLabelOnTop = computed(() => {
+        if (props.multiline) return true;
+
         return props.modelValue || focusedOnInput.value;
       });
 
@@ -75,7 +94,11 @@
         }
       }
 
-      function blurInputHandler() {
+      async function blurInputHandler() {
+        await nextTick();
+        await nextTick();
+        await nextTick();
+
         focusedOnInput.value = false;
       }
 
@@ -84,8 +107,9 @@
       }
 
       return {
-        isPlaceholderOnTop,
+        isLabelOnTop,
         isShowPassword,
+
         changeVisibilityPassword,
         focusInputHandler,
         blurInputHandler,
@@ -143,7 +167,7 @@
     }
   }
 
-  .text-field-component__placeholder {
+  .text-field-component__label {
     position: absolute;
     top: 50%;
     left: 14px;
@@ -160,11 +184,11 @@
     transition: all 0.05s linear;
   }
 
-  .text-field-component__placeholder--right {
+  .text-field-component__label--right {
     left: 48px;
   }
 
-  .text-field-component__placeholder--top {
+  .text-field-component__label--top {
     top: 0;
     left: 14px;
 
@@ -172,5 +196,30 @@
 
     font-size: 14px;
     line-height: 18px;
+  }
+
+  .text-field-component__textarea-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    border-radius: 14px;
+  }
+
+  .text-field-component__textarea {
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+
+    border: 0;
+
+    font-size: 16px;
+    line-height: 20px;
+
+    resize: none;
+
+    &:focus-visible {
+      outline: 0;
+    }
   }
 </style>

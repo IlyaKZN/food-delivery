@@ -52,7 +52,7 @@
     display: flex;
     align-items: center;
 
-    height: 24px;
+    height: 40px;
     padding-left: 32px;
 
     font-size: 16px;
@@ -74,7 +74,7 @@
 
   .checkmark {
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
 
     width: 24px;
@@ -83,6 +83,8 @@
     background-color: #fff;
     border: 2px solid $color-app-secondary;
     border-radius: 6px;
+
+    transform: translateY(-50%);
   }
 
   .checkmark--checked {

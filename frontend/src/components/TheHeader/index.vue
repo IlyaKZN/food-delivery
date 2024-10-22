@@ -13,7 +13,7 @@
       v-model="searchValue"
       class="header-component__search-textfield"
       icon="search"
-      placeholder="Ресторан или блюдо"/>
+      label="Ресторан или блюдо"/>
 
       <ButtonComponent
       class="header-component__search-button"

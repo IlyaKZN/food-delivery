@@ -33,14 +33,14 @@
       <TextFieldComponent
       v-model="loginValue"
       class="login-screen__input"
-      placeholder="Номер телефона"
+      label="Номер телефона"
       type="phoneNumber"/>
 
       <TextFieldComponent
       v-if="isLogin || isRegister"
       v-model="passwordValue"
       class="login-screen__input login-screen__input--password"
-      placeholder="Пароль"
+      label="Пароль"
       type="password"/>
 
       <span

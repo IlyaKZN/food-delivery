@@ -326,8 +326,6 @@
     display: flex;
 
     width: 100%;
-
-    // height: 64px;
     padding: 10px 30px;
     overflow: hidden;
 

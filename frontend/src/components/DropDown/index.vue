@@ -92,13 +92,17 @@
 
 <style lang="scss">
   .drop-down-component__action-button {
+    position: relative;
+
     height: 100%;
   }
 
   .drop-down-component-popup {
+    position: absolute;
     z-index: 1000;
 
-    width: min-content;
+    // width: min-content;
+    width: 100%;
     overflow: hidden;
 
     filter: drop-shadow(0 0 8px rgb(0 0 0 / 0.25));

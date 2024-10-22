@@ -4,16 +4,14 @@
     :class="$style.image"
     :src="itemData.imgSrc">
 
-    <div :class="$style.info">
-      <span :class="$style.name">
-        {{ itemData.name }}
-      </span>
+    <span :class="$style.name">
+      {{ itemData.name }} {{ itemData.name }} {{ itemData.name }}
+    </span>
 
-      <ButtonComponent
-      @click="$emit('editButtonClick', itemData)"
-      :class="$style.button"
-      text="Редактировать"/>
-    </div>
+    <ButtonComponent
+    @click="$emit('editButtonClick', itemData)"
+    :class="$style.button"
+    text="Редактировать"/>
   </div>
 </template>
 
@@ -56,11 +54,11 @@
 
 <style module lang="scss">
   .container {
-    display: flex;
+    display: grid;
+    grid-template-columns: max-content 1fr;
     gap: 12px;
 
     width: 100%;
-    height: 124px;
     padding: 10px;
 
     border-radius: 14px;
@@ -68,20 +66,22 @@
   }
 
   .image {
-    height: 100%;
+    grid-row: 1 / 3;
+
+    width: 104px;
+    height: 104px;
 
     border-radius: 10px;
-  }
 
-  .info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    @media screen and (width <= 575px) {
+      grid-row: 1 / 2;
+    }
   }
 
   .name {
     display: -webkit-box;
 
+    height: min-content;
     overflow: hidden;
 
     font-size: 20px;
@@ -89,9 +89,21 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     line-clamp: 2;
+
+    @media screen and (width <= 575px) {
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+    }
   }
 
   .button {
     width: max-content;
+
+    @media screen and (width <= 575px) {
+      grid-column: 1 / 3;
+
+      width: 100%;
+      margin-left: auto;
+    }
   }
 </style>

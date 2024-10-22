@@ -1,0 +1,1 @@
+export type TSelectorList = Array<{ text: string, value: string }>

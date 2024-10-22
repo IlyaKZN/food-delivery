@@ -5,7 +5,6 @@
     <div
     v-if="isOpen"
     @click.self="close"
-    @wheel.stop
     class="modal-container">
       <Transition
       appear
@@ -13,7 +12,7 @@
       name="modal-content">
         <div
         v-if="isOpen"
-        class="modal-content">
+        :class="`modal-content ${hasPadding ? 'modal-content--has-padding' : ''}`">
           <slot/>
         </div>
       </Transition>
@@ -26,6 +25,12 @@
 
   export default defineComponent({
     name: 'ModalComponent',
+    props: {
+      hasPadding: {
+        type: Boolean,
+        default: true,
+      },
+    },
     emits: ['close'],
     setup(_props, { emit }) {
       const body = document.querySelector('body');
@@ -73,10 +78,12 @@
   }
 
   .modal-content {
-    padding: 14px;
-
     background-color: white;
     border-radius: 14px;
+  }
+
+  .modal-content--has-padding {
+    padding: 14px;
   }
 
   .modal-wrapper-enter-active,

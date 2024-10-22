@@ -44,22 +44,22 @@
             <TextFieldComponent
             v-model="name"
             :class="$style.textfield"
-            placeholder="Название"/>
+            label="Название"/>
 
             <TextFieldComponent
             v-model="address"
             :class="$style.textfield"
-            placeholder="Адрес"/>
+            label="Адрес"/>
 
             <TextFieldComponent
             v-model="number"
             :class="$style.textfield"
-            placeholder="Контактный телефон"/>
+            label="Контактный телефон"/>
 
             <TextFieldComponent
             v-model="email"
             :class="$style.textfield"
-            placeholder="Контактный email"/>
+            label="Контактный email"/>
           </div>
 
           <div :class="$style['second-column']">
@@ -71,12 +71,12 @@
               <TextFieldComponent
               v-model="fromWorkTime"
               :class="$style['date-textfield']"
-              placeholder="От"/>
+              label="От"/>
 
               <TextFieldComponent
               v-model="toWorkTime"
               :class="$style['date-textfield']"
-              placeholder="До"/>
+              label="До"/>
             </div>
 
             <CheckboxComponent
@@ -122,7 +122,9 @@
 
     <ModalComponent
     v-if="menuItemEditorData"
-    @close="menuItemEditorData = null">
+    @close="menuItemEditorData = null"
+    :class="$style.modal"
+    :hasPadding="false">
       <MenuItemEditor :itemData="menuItemEditorData"/>
     </ModalComponent>
   </div>
@@ -237,25 +239,32 @@
 
 <style module lang="scss">
   .screen {
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
+    align-items: center;
 
-    padding: 116px 220px 52px;
+    padding: 116px 120px 52px;
 
     background-color: white;
 
     @media screen and (width <= 1400px) {
-      padding-right: 100px;
-      padding-left: 100px;
+      padding-right: 60px;
+      padding-left: 60px;
     }
     @media screen and (width <= 1023px) {
       padding-right: 40px;
+      padding-bottom: 32px;
       padding-left: 40px;
     }
     @media screen and (width <= 575px) {
-      padding-top: 80px;
-      padding-right: 14px;
-      padding-left: 14px;
+      padding: 80px 14px 14px;
     }
+  }
+
+  .content {
+    width: 100%;
+    max-width: 1480px;
   }
 
   .header {
@@ -416,6 +425,9 @@
 
     padding: 20px 20px 40px;
 
+    @media screen and (width <= 1400px) {
+      grid-template-columns: 1fr 1fr;
+    }
     @media screen and (width <= 767px) {
       grid-template-columns: 1fr;
 
